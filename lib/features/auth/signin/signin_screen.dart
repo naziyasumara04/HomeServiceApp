@@ -7,19 +7,19 @@ import 'package:homeapp/routes/route_generator.dart';
 import '../../../common/widgets/custom_social_button.dart';
 import '../../../common/widgets/custom_text_field.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SigninScreen extends StatefulWidget {
+  const SigninScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SigninScreen> createState() => _SigninScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-
+class _SigninScreenState extends State<SigninScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   bool _obscureText = true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,9 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 20.h,
         ),
-        CustomButton(btnText: "Sign In"),
+        CustomButton(btnText: "Sign In",onTap: (){
+          Navigator.pushNamed(context, AppRoutes.otp);
+        },),
         SizedBox(
           height: 5.h,
         ),
@@ -71,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.all(14.0),
       child: Center(
         child: Text(
-          "Enter your email and password to login",
+          "Enter your email and password to signin",
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w500,
@@ -117,7 +119,9 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.forgetpassword);
+            },
             child: Text(
               "Forget Password?",
               style: TextStyle(color: AppColors.darkGreyColor, fontSize: 14),

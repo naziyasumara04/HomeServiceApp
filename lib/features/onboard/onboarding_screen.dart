@@ -93,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     GestureDetector(
                       onTap:(){
                         // _controller.jumpTo(2);
-                        Navigator.pushNamed(context, AppRoutes.login);
+                        Navigator.pushNamed(context, AppRoutes.signin);
                       },
 
                       child: Text(
@@ -113,7 +113,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Container(
               alignment: Alignment(0,0.85),
                 child: CustomButton(btnText: "Get Started",onTap: (){
-                  Navigator.pushNamed(context, AppRoutes.login);
+                  Navigator.pushNamed(context, AppRoutes.signin);
                 },))
                 :Container(
                 alignment: Alignment(0,0.85),
