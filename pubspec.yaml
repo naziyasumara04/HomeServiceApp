@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
   smooth_page_indicator: ^1.2.0+3
+  pin_code_text_field: ^1.8.0
 
 dev_dependencies:
   flutter_test:
