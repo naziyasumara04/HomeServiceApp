@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homeapp/routes/route_generator.dart';
 
-import '../../../core/constants/app_colors.dart';
+import '../../core/constants/app_colors.dart';
 
 class OtpSuccessScreen extends StatefulWidget {
   const OtpSuccessScreen({super.key});

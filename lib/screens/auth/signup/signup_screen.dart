@@ -196,7 +196,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ),),
           GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.signin);
+                Navigator.pushNamed(context, AppRoutes.signIn);
               },
               child: Text(" Sign in now",
                 style: TextStyle(

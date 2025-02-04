@@ -101,7 +101,7 @@ class _OtpScreenState extends State<OtpScreen> {
       focusNode: otpFocusNode,
       keyboardType: TextInputType.number,
       onDone: (text) {
-        Navigator.pushNamed(context, AppRoutes.otpsuccess);
+        Navigator.pushNamed(context, AppRoutes.otpSuccess);
       },
     );
   }
@@ -110,7 +110,7 @@ class _OtpScreenState extends State<OtpScreen> {
     return CustomButton(
       btnText: "Verify Code",
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.otpsuccess);
+        Navigator.pushNamed(context, AppRoutes.otpSuccess);
       },
     );
   }
