@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:homeapp/routes/route_generator.dart';
+import 'package:homeapp/widgets/payment_widget.dart';
+import 'package:homeapp/widgets/profile_card.dart';
+import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_images.dart';
+import '../../widgets/custom_button.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,8 +17,413 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text("Profile screeeeeeeeeeeen")),
+    return Scaffold(body: buildBody());
+  }
+
+  Widget buildBody() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 40.h,
+            ),
+            profileText(),
+            SizedBox(
+              height: 20.h,
+            ),
+            profileCont(),
+            SizedBox(
+              height: 20.h,
+            ),
+            profileData(),
+            SizedBox(
+              height: 20.h,
+            ),
+            profileInfo(),
+            changeProfile(),
+            changeProfileCont(),
+            SizedBox(
+              height: 40.h,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget profileText() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          "My Profile",
+          style: TextStyle(
+              color: AppColors.lightBlueColor,
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600),
+        ),
+      ],
+    );
+  }
+
+  Widget profileCont() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(
+                AppImages.profileImg,
+                // height: 96,
+                // width: 96,
+              )),
+          SizedBox(
+            width: 20.h,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Mahrama",
+                style: TextStyle(
+                    color: AppColors.darkGreyColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18),
+              ),
+              Text(
+                "Electrician",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+              ),
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.star,
+                    color: AppColors.lightBlueColor,
+                  ),
+                  SizedBox(
+                    width: 2.w,
+                  ),
+                  Text(
+                    "3.9",
+                    style: TextStyle(color: AppColors.lightBlueColor),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget profileData() {
+    return Container(
+      height: 103.h,
+      width: 327.w,
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+          color: AppColors.whiteColor, borderRadius: BorderRadius.circular(6)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          commonCard(
+              image: AppImages.earning, title: '\$343', subTitle: ' Earnings'),
+          commonCard(
+              image: AppImages.orderImg,
+              title: '2 Orders',
+              subTitle: ' Active'),
+          commonCard(
+              image: AppImages.orderCheck,
+              title: '56 Orders',
+              subTitle: 'Completed'),
+        ],
+      ),
+    );
+  }
+
+  Widget commonCard(
+      {required final String image,
+      required final String title,
+      required final String subTitle}) {
+    return Column(
+      children: [
+        Image.asset(image),
+        SizedBox(
+          height: 5.h,
+        ),
+        Text(
+          title,
+          style: TextStyle(
+              color: AppColors.darkGreyColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 16),
+        ),
+        Text(
+          subTitle,
+          style: TextStyle(
+              color: AppColors.darkGreyColor,
+              fontSize: 10,
+              fontWeight: FontWeight.w500),
+        )
+      ],
+    );
+  }
+
+  Widget profileInfo() {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Profile information",
+            style: TextStyle(
+              color: AppColors.darkGreyColor,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        ProfileCard(
+          cardText: "Edit Profile",
+          cardImage: AppImages.editImg,
+          showCont: true,
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.editProviderProfile);
+          },
+        ),
+        SizedBox(
+          height: 5.h,
+        ),
+        ProfileCard(
+          cardText: "Profession",
+          cardImage: AppImages.profession,
+          showCont: true,
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.profession);
+          },
+        ),
+        SizedBox(
+          height: 5.h,
+        ),
+        ProfileCard(
+          cardText: "Verification",
+          cardImage: AppImages.verification,
+          showCont: true,
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.verification);
+          },
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Subscription & payments",
+              style: TextStyle(
+                color: AppColors.darkGreyColor,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
+            )),
+        ProfileCard(
+          cardText: "Payment Methods",
+          cardImage: AppImages.paymentImg,
+          showCont: true,
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.paymentScreen);
+          },
+        ),
+        SizedBox(
+          height: 5.h,
+        ),
+        ProfileCard(
+          cardText: "Upgrade",
+          cardImage: AppImages.upgrade,
+          showCont: true,
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.upgrade);
+          },
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "General Preferences",
+              style: TextStyle(
+                color: AppColors.darkGreyColor,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
+            )),
+        SizedBox(
+          height: 10.h,
+        ),
+        ProfileCard(
+          cardText: "Notification",
+          cardImage: AppImages.notifyImg,
+          showCont: true,
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.notificationScreen);
+          },
+        ),
+        SizedBox(
+          height: 5.h,
+        ),
+        ProfileCard(
+          cardText: "Help & Support",
+          cardImage: AppImages.helpImg,
+          showCont: true,
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.helpSupportScreen);
+          },
+        ),
+        SizedBox(
+          height: 5.h,
+        ),
+        ProfileCard(
+            // showCont: true,
+            cardText: "Logout",
+            cardImage: AppImages.logoutImg,
+            onTap: () {
+              _showLogoutDialog(context);
+            })
+      ],
+    );
+  }
+
+  Widget changeProfile() {
+    return Padding(
+      padding: const EdgeInsets.all(14.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            AppImages.profileChangeImg,
+            height: 24,
+            width: 24,
+          ),
+          Text(
+            "Change Profile to buying mode",
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.darkGreyColor),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget changeProfileCont() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, AppRoutes.myProfileScreen);
+      },
+      child: Container(
+        height: 56,
+        width: 327,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(color: AppColors.lightBlueColor)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 24,
+              width: 24,
+              child: CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage(AppImages.profileImg),
+                // child: Image.asset(AppImages.profileImg)
+              ),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              "Mahrama",
+              style: TextStyle(
+                  color: AppColors.lightBlueColor,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                AppImages.logout,
+                height: 87,
+                width: 79,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                "Logout",
+                style: TextStyle(
+                    color: AppColors.darkGreyColor,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                'Are you sure to logout?',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.darkGreyColor),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              CustomButton(btnText: "Logout"),
+              SizedBox(height: 20.h),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(
+                      color: AppColors.lightBlueColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14
+                      // color: App
+                      ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

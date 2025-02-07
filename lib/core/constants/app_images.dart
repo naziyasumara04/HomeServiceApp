@@ -6,23 +6,27 @@ class AppImages {
   static const googleImg = "assets/images/google.png";
   static const facebookImg = "assets/images/facebook.png";
   static const profileImg = "assets/images/profile.png";
-  static const editImg="assets/images/edit.png";
-  static const notifyImg="assets/images/notify_img.png";
-  static const paymentImg="assets/images/payment_img.png";
-  static const helpImg="assets/images/help_img.png";
-  static const logoutImg="assets/images/logout_img.png";
-  static const profileChangeImg="assets/images/profilechange.png";
+  static const editImg = "assets/images/edit.png";
+  static const notifyImg = "assets/images/notify_img.png";
+  static const paymentImg = "assets/images/payment_img.png";
+  static const helpImg = "assets/images/help_img.png";
+  static const logoutImg = "assets/images/logout_img.png";
+  static const profileChangeImg = "assets/images/profilechange.png";
   static const homeIcon = "assets/icons/home.svg";
   static const cityIcon = "assets/icons/city.svg";
   static const profileIcon = "assets/icons/profile.svg";
   static const orderIcon = "assets/icons/order.svg";
-  static const helpSupportImg="assets/images/help_support.png";
-  static const chatImg="assets/images/chatImg.png";
-  static const easyPaisa="assets/images/easypaisa.png";
-  static const jazzCash="assets/images/jazzcash.png";
-  static const bankImg="assets/images/bank.png";
-  static const payPal="assets/images/paypal.png";
-  static const logout="assets/images/logoutImg.png";
-
-
+  static const helpSupportImg = "assets/images/help_support.png";
+  static const chatImg = "assets/images/chatImg.png";
+  static const easyPaisa = "assets/images/easypaisa.png";
+  static const jazzCash = "assets/images/jazzcash.png";
+  static const bankImg = "assets/images/bank.png";
+  static const payPal = "assets/images/paypal.png";
+  static const logout = "assets/images/logoutImg.png";
+  static const earning = "assets/images/earning.png";
+  static const orderImg = "assets/images/orderImg.png";
+  static const orderCheck = "assets/images/orderCheck.png";
+  static const profession = "assets/images/profession.png";
+  static const verification = "assets/images/verification.png";
+  static const upgrade = "assets/images/upgrade.png";
 }

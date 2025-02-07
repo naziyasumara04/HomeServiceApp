@@ -4,7 +4,12 @@ import 'package:homeapp/screens/common/help_support_screen.dart';
 import 'package:homeapp/screens/common/notification_screen.dart';
 import 'package:homeapp/screens/payment/add_new_card_screen.dart';
 import 'package:homeapp/screens/payment/payment_screen.dart';
+import 'package:homeapp/screens/service_provider/edit_provider_profile.dart';
+import 'package:homeapp/screens/service_provider/profession_screen.dart';
 import 'package:homeapp/screens/service_provider/profile_screen.dart';
+import 'package:homeapp/screens/service_provider/upgrade_screen.dart';
+import 'package:homeapp/screens/service_provider/verification_screen.dart';
+import 'package:homeapp/screens/service_seeker/my_profile_screen..dart';
 import '../screens/auth/forget_password/forget_password_screen.dart';
 import '../screens/auth/otp/otp_screen.dart';
 import '../screens/success/success_screen.dart';
@@ -25,8 +30,13 @@ class AppRoutes {
   static const String editSeekerProfile = "/editSeekerProfile";
   static const String notificationScreen = "/notificationScreen";
   static const String helpSupportScreen = "/helpSupportScreen";
-  static const String paymentScreen="/paymentScreen";
-  static const String addNewCardScreen="/addNewCardScreen";
+  static const String paymentScreen = "/paymentScreen";
+  static const String addNewCardScreen = "/addNewCardScreen";
+  static const String myProfileScreen = "/myProfileScreen";
+  static const String editProviderProfile = "/editProviderProfile";
+  static const String profession = "/profession";
+  static const String verification = "/verification";
+  static const String upgrade = "/upgrade";
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -47,18 +57,26 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => DashboardScreen());
     case AppRoutes.profile:
       return MaterialPageRoute(builder: (_) => ProfileScreen());
+    case AppRoutes.myProfileScreen:
+      return MaterialPageRoute(builder: (_) => MyProfileScreen());
     case AppRoutes.editSeekerProfile:
       return MaterialPageRoute(builder: (_) => EditSeekerProfile());
     case AppRoutes.notificationScreen:
       return MaterialPageRoute(builder: (_) => NotificationScreen());
     case AppRoutes.helpSupportScreen:
       return MaterialPageRoute(builder: (_) => HelpSupportScreen());
-
     case AppRoutes.paymentScreen:
-      return MaterialPageRoute(builder: (_)=>PaymentScreen());
-
+      return MaterialPageRoute(builder: (_) => PaymentScreen());
     case AppRoutes.addNewCardScreen:
-      return MaterialPageRoute(builder: (_)=>AddNewCardScreen());
+      return MaterialPageRoute(builder: (_) => AddNewCardScreen());
+    case AppRoutes.editProviderProfile:
+      return MaterialPageRoute(builder: (_) => EditProviderProfile());
+    case AppRoutes.profession:
+      return MaterialPageRoute(builder: (_) => ProfessionScreen());
+    case AppRoutes.verification:
+      return MaterialPageRoute(builder: (_) => VerificationScreen());
+    case AppRoutes.upgrade:
+      return MaterialPageRoute(builder: (_) => UpgradeScreen());
 // Default route
     default:
       return MaterialPageRoute(builder: (_) => Container());

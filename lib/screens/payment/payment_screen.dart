@@ -1,13 +1,12 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/widgets/custom_button.dart';
-
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
+import '../../widgets/payment_widget.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -65,7 +64,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           SizedBox(height: 20.h,),
           addNewCard(),
           SizedBox(height: 220.h,),
-          CustomButton(btnText: "Save",onTap: (){},),
+          CustomButton(btnText: "Save", onTap: () {},),
         ],
       ),
     );
@@ -73,22 +72,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   Widget paymentText() {
     return
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Select payment method",
-                style: TextStyle(
-                    color: AppColors.darkGreyColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16),
-              ),
-            ],
-          ),
-        );
-
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Select payment method",
+              style: TextStyle(
+                  color: AppColors.darkGreyColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16),
+            ),
+          ],
+        ),
+      );
   }
 
   Widget addNewCard() {
@@ -110,16 +108,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.add,color: AppColors.lightBlueColor,),
+              Icon(Icons.add, color: AppColors.lightBlueColor,),
               SizedBox(
                 width: 5.w,
               ),
               Text("Add new Card",
-              style: TextStyle(
-                fontSize: 16,
-                color: AppColors.lightBlueColor,
-                fontWeight: FontWeight.w700
-              ),),
+                style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.lightBlueColor,
+                    fontWeight: FontWeight.w700
+                ),),
             ],
           ),
         ),
@@ -135,8 +133,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: [
-                PaymentCard(
-                  onTap: (){},
+                PaymentWidget(
+                  onTap: () {},
                   listImage: paymentMethods[index]["image"]!,
                   text: paymentMethods[index]["text"]!,
                   isSelected: selectedIndex == index,
@@ -152,54 +150,54 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 }
 
-class PaymentCard extends StatelessWidget {
-  final String listImage;
-  final String text;
-  final bool isSelected;
-  final VoidCallback onTap;
-  final VoidCallback onSelect;
-
-  // final IconData listIcon;
-
-  const PaymentCard(
-      {super.key,
-      required this.listImage,
-      required this.text,
-      required this.isSelected,
-      required this.onSelect, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 56.h,
-        width: 327.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          color: isSelected ? Colors.blue.shade100 : AppColors.whiteColor,
-          border: Border.all(
-            color: isSelected
-                ? AppColors.lightBlueColor
-                : AppColors.borderColor, // Border color
-            // width: 2.0, // Border thickness
-          ),
-        ),
-        child: ListTile(
-          onTap: onSelect,
-          leading: Image.asset(
-            listImage,
-            height: 25,
-            width: 25,
-          ),
-          title: Text(text),
-          trailing: Icon(
-            Icons.check,
-            color: isSelected ? AppColors.lightBlueColor : AppColors.borderColor,
-            size: 15,
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class PaymentCard extends StatelessWidget {
+//   final String listImage;
+//   final String text;
+//   final bool isSelected;
+//   final VoidCallback onTap;
+//   final VoidCallback onSelect;
+//
+//   // final IconData listIcon;
+//
+//   const PaymentCard({super.key,
+//     required this.listImage,
+//     required this.text,
+//     required this.isSelected,
+//     required this.onSelect, required this.onTap});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: onTap,
+//       child: Container(
+//         height: 56.h,
+//         width: 327.w,
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(6),
+//           color: isSelected ? Colors.blue.shade100 : AppColors.whiteColor,
+//           border: Border.all(
+//             color: isSelected
+//                 ? AppColors.lightBlueColor
+//                 : AppColors.borderColor, // Border color
+//             // width: 2.0, // Border thickness
+//           ),
+//         ),
+//         child: ListTile(
+//           onTap: onSelect,
+//           leading: Image.asset(
+//             listImage,
+//             height: 25,
+//             width: 25,
+//           ),
+//           title: Text(text),
+//           trailing: Icon(
+//             Icons.check,
+//             color: isSelected ? AppColors.lightBlueColor : AppColors
+//                 .borderColor,
+//             size: 15,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

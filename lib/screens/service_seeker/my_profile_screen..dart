@@ -127,61 +127,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           height: 5.h,
         ),
         ProfileCard(
-            // showCont: true,
+          // showCont: true,
             cardText: "Logout",
             cardImage: AppImages.logoutImg,
             onTap: () {
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => Dialog(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              AppImages.logout,
-                              height: 87,
-                              width: 79,
-                            ),
-                            SizedBox(height: 10.h,),
-                            Text(
-                              "Logout",
-                              style: TextStyle(
-                                  color: AppColors.darkGreyColor,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                            ),
-                            SizedBox(height: 10.h,),
-                            Text(
-                              'Are you sure to logout?',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.darkGreyColor),
-                            ),
-                            SizedBox(height: 20.h,),
-                            CustomButton(btnText: "Logout"),
-                            SizedBox(height:20.h),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text('Cancel',
-                              style: TextStyle(
-                                color: AppColors.lightBlueColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14
-                                // color: App
-                              ),),
-                            ),
-                          ],
-                        ))),
-              );
+              _showLogoutDialog(context);
             })
       ],
     );
@@ -246,6 +196,71 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) =>
+          Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    AppImages.logout,
+                    height: 87,
+                    width: 79,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Text(
+                    "Logout",
+                    style: TextStyle(
+                        color: AppColors.darkGreyColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Text(
+                    'Are you sure to logout?',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.darkGreyColor),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  CustomButton(btnText: "Logout"),
+                  SizedBox(height: 20.h),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                          color: AppColors.lightBlueColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14
+                        // color: App
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
     );
   }
 }

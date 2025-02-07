@@ -7,12 +7,11 @@ class ProfileCard extends StatelessWidget {
   final VoidCallback? onTap;
   final bool showCont;
 
-  const ProfileCard(
-      {super.key,
-      required this.cardText,
-      required this.cardImage,
-      this.onTap,
-      this.showCont = false});
+  const ProfileCard({super.key,
+    required this.cardText,
+    required this.cardImage,
+    this.onTap,
+    this.showCont = false});
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +32,16 @@ class ProfileCard extends StatelessWidget {
           ),
           trailing: showCont
               ? Container(
-                  height: 44,
-                  width: 44,
-                  decoration: BoxDecoration(
-                      color: AppColors.lightBlueColor,
-                      borderRadius: BorderRadius.circular(6)),
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: AppColors.whiteColor,
-                  ),
-                )
+            height: 44,
+            width: 44,
+            decoration: BoxDecoration(
+                color: AppColors.lightBlueColor,
+                borderRadius: BorderRadius.circular(6)),
+            child: Icon(
+              Icons.arrow_forward_ios,
+              color: AppColors.whiteColor,
+            ),
+          )
               : SizedBox()),
     );
   }
