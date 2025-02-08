@@ -29,4 +29,8 @@ class AppImages {
   static const profession = "assets/images/profession.png";
   static const verification = "assets/images/verification.png";
   static const upgrade = "assets/images/upgrade.png";
+  static const emailImg = "assets/images/emailImg.png";
+  static const googleVerify = "assets/images/googleImg.png";
+  static const mobileNumImg="assets/images/mobileNumImg.png";
+  static const upgradeImg="assets/images/upgradeImg.png";
 }

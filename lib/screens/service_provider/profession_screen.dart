@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/widgets/custom_button.dart';
-import 'package:file_picker/file_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import '../../core/constants/app_colors.dart';
 
@@ -203,7 +203,7 @@ class _ProfessionScreenState extends State<ProfessionScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Align(
                   alignment: Alignment.centerRight, child: InkWell(
-                onTap: pickFile,
+                onTap: (){},
                   child: Text("Change",
                     style: TextStyle(
                         color: AppColors.lightBlueColor,
@@ -236,7 +236,7 @@ class _ProfessionScreenState extends State<ProfessionScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Align(
                   alignment: Alignment.centerRight, child: InkWell(
-                onTap: pickFile,
+                onTap: (){},
                   child: Text("Change",
                   style: TextStyle(
                  color: AppColors.lightBlueColor,
@@ -257,16 +257,16 @@ class _ProfessionScreenState extends State<ProfessionScreen> {
     );
   }
 
-  void pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    if (result != null) {
-      File file = File(result.files.single.path!);
-      print("File picked: ${file.path}");
-    } else {
-      print("No file selected");
-    }
-  }
+  // void pickFile() async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles();
+  //
+  //   if (result != null) {
+  //     File file = File(result.files.single.path!);
+  //     print("File picked: ${file.path}");
+  //   } else {
+  //     print("No file selected");
+  //   }
+  // }
 
 }
 
