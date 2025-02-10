@@ -20,7 +20,7 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, AppRoutes.dashboard);
+      Navigator.pushNamed(context, AppRoutes.accountSetup);
     });
     _controller = AnimationController(
       duration: Duration(milliseconds: 900),

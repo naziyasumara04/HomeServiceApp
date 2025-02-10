@@ -67,8 +67,12 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
           UpgradeText(upgText: "Gallery Showcase"),
           UpgradeText(upgText: "Extended Service Area"),
           UpgradeText(upgText: "Premium Badge"),
-          SizedBox(height: 140.h,),
-          CustomButton(btnText: "Upgrade",)
+          SizedBox(
+            height: 140.h,
+          ),
+          CustomButton(
+            btnText: "Upgrade",
+          )
         ],
       ),
     );
@@ -87,13 +91,18 @@ class UpgradeText extends StatelessWidget {
         SizedBox(
           height: 34.h,
           child: ListTile(
-            leading: Icon(Icons.check,color: AppColors.lightBlueColor,size: 15,),
-            title: Text(upgText,
-            style: TextStyle(
-              color: AppColors.darkGreyColor,
-              fontSize: 14,
-              fontWeight: FontWeight.w500
-            ),),
+            leading: Icon(
+              Icons.check,
+              color: AppColors.lightBlueColor,
+              size: 15,
+            ),
+            title: Text(
+              upgText,
+              style: TextStyle(
+                  color: AppColors.darkGreyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ),
         Divider()

@@ -33,4 +33,7 @@ class AppImages {
   static const googleVerify = "assets/images/googleImg.png";
   static const mobileNumImg="assets/images/mobileNumImg.png";
   static const upgradeImg="assets/images/upgradeImg.png";
+  static const mapImg="assets/images/mapImg.png";
+  static const flatFeeImg="assets/images/flatFeeImg.png";
+  static const hourImg="assets/images/hourImg.png";
 }

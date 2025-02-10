@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/routes/route_generator.dart';
+import 'package:homeapp/screens/service_provider/add_account_detail_screen.dart';
+import 'package:homeapp/screens/service_provider/service_provider_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'First Method',
           initialRoute: "/splash",
+          // home: ServiceProviderScreen(),
           onGenerateRoute: generateRoute,
         );
       },

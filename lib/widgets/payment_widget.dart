@@ -10,7 +10,7 @@ class PaymentWidget extends StatelessWidget {
   final String text;
   final bool isSelected;
   final VoidCallback onTap;
-  final VoidCallback onSelect;
+  final VoidCallback? onSelect;
 
   // final IconData listIcon;
 
@@ -18,7 +18,7 @@ class PaymentWidget extends StatelessWidget {
     required this.listImage,
     required this.text,
     required this.isSelected,
-    required this.onSelect, required this.onTap});
+    this.onSelect, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
