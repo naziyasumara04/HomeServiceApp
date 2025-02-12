@@ -6,7 +6,9 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  final VoidCallback onNext;
+
+  const MapScreen({super.key, required this.onNext});
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -65,7 +67,7 @@ class _MapScreenState extends State<MapScreen> {
             ),
             CustomButton(
               btnText: "Next",
-              onTap: () {},
+              onTap:widget.onNext,
             )
           ],
         ),

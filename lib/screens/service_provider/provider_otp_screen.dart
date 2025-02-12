@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/core/constants/app_colors.dart';
-import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'dart:async';
 
 class ProviderOtpScreen extends StatefulWidget {
-  const ProviderOtpScreen({super.key});
+  final VoidCallback onNext;
+  const ProviderOtpScreen({super.key, required this.onNext});
 
   @override
   State<ProviderOtpScreen> createState() => _ProviderOtpScreenState();
@@ -75,7 +75,8 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
           ),
           CustomButton(
             btnText: "Verify",
-            onTap: _startCountdown,
+            // _startCountdown
+            onTap: widget.onNext,
           ),
           SizedBox(
             height: 20.h,

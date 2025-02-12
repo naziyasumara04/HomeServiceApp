@@ -6,7 +6,8 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 
 class ServiceOffersScreen extends StatefulWidget {
-  const ServiceOffersScreen({super.key});
+  final VoidCallback onNext;
+  const ServiceOffersScreen({super.key, required this.onNext});
 
   @override
   State<ServiceOffersScreen> createState() => _ServiceOffersScreenState();
@@ -70,7 +71,7 @@ class _ServiceOffersScreenState extends State<ServiceOffersScreen> {
             ),
             CustomButton(
               btnText: "Next",
-              onTap: () {},
+              onTap:widget.onNext,
             )
             // ServiceField(
             //   hintText: "Select Your service",

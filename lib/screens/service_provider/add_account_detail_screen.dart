@@ -4,7 +4,8 @@ import 'package:homeapp/widgets/custom_button.dart';
 import '../../core/constants/app_colors.dart';
 
 class AddAccountDetailScreen extends StatefulWidget {
-  const AddAccountDetailScreen({super.key});
+  final VoidCallback onNext;
+  const AddAccountDetailScreen({super.key, required this.onNext});
 
   @override
   State<AddAccountDetailScreen> createState() => _AddAccountDetailScreenState();
@@ -64,7 +65,7 @@ class _AddAccountDetailScreenState extends State<AddAccountDetailScreen> {
               SizedBox(height: 20.h,),
               CustomButton(
                 btnText: "Next",
-                onTap: () {},
+                onTap: widget.onNext,
               )
             ],
           ),

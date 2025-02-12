@@ -7,7 +7,8 @@ import 'package:homeapp/widgets/custom_button.dart';
 import 'package:homeapp/widgets/payment_widget.dart';
 
 class PricingRateScreen extends StatefulWidget {
-  const PricingRateScreen({super.key});
+  final VoidCallback onNext;
+  const PricingRateScreen({super.key, required this.onNext});
 
   @override
   State<PricingRateScreen> createState() => _PricingRateScreenState();

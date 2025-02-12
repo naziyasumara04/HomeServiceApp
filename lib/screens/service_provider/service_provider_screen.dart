@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:homeapp/screens/service_provider/map_screen.dart';
 import 'package:homeapp/screens/service_provider/payment_method_provider_screen.dart';
-import 'package:homeapp/screens/service_provider/phone_num_screen.dart';
+import 'package:homeapp/screens/service_provider/provider_phone_num_screen.dart';
 import 'package:homeapp/screens/service_provider/pricing_rate_screen.dart';
 import 'package:homeapp/screens/service_provider/provider_otp_screen.dart';
 import 'package:homeapp/screens/service_provider/service_offers_screen.dart';
 import 'package:homeapp/screens/service_provider/service_working_hours_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 import 'add_account_detail_screen.dart';
@@ -21,19 +20,34 @@ class ServiceProviderScreen extends StatefulWidget {
 
 class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
   PageController controller = PageController();
-
-  List<Widget> _list = <Widget>[
-    PhoneNumScreen(),
-    ProviderOtpScreen(),
-    MapScreen(),
-    ServiceOffersScreen(),
-    ServiceWorkingHoursScreen(),
-    PaymentMethodProviderScreen(),
-    AddAccountDetailScreen(),
-    PricingRateScreen()
-  ];
   int _curr = 0;
 
+  List<Widget> _list = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _list = [
+      PhoneNumScreen(onNext: _goToNextPage),
+      ProviderOtpScreen(onNext: _goToNextPage),
+      MapScreen(onNext: _goToNextPage),
+      ServiceOffersScreen(onNext: _goToNextPage),
+      ServiceWorkingHoursScreen(onNext: _goToNextPage),
+      PaymentMethodProviderScreen(onNext: _goToNextPage),
+      AddAccountDetailScreen(onNext: _goToNextPage),
+      PricingRateScreen(onNext: _goToNextPage),
+    ];
+  }
+
+  void _goToNextPage() {
+    if (_curr < _list.length - 1) {
+      controller.animateToPage(
+        _curr + 1,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,18 +55,15 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
         actions: [
           SmoothPageIndicator(
               controller: controller, // PageController
-              count: 8,
+              count: _list.length,
               effect: WormEffect(
                 type: WormType.normal,
-                // expansionFactor: 3.0,
                 radius: 20,
-                // activeDotScale: 2.0,
-                dotHeight: 8.0, // Adjust dot height
-                dotWidth: 8.0, // Adjust dot width
-                // type: WormType.thin, // Optional: Customize the worm effect
-                activeDotColor: AppColors.lightBlueColor, // Change active dot color
-                dotColor: Colors.grey, // Change inactive dot color
-              ),// your preferred effect
+                dotHeight: 8.0,
+                dotWidth: 8.0,
+                activeDotColor: AppColors.lightBlueColor,
+                dotColor: Colors.grey,
+              ), // your preferred effect
               onDotClicked: (index) {})
         ],
         iconTheme: IconThemeData(color: AppColors.lightBlueColor),
@@ -65,9 +76,11 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
       body: PageView(
         children: _list,
         scrollDirection: Axis.horizontal,
+        physics: NeverScrollableScrollPhysics(),
         // reverse: true,
         // physics: BouncingScrollPhysics(),
         controller: controller,
+        pageSnapping: true,
         onPageChanged: (num) {
           setState(() {
             _curr = num;

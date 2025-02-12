@@ -5,7 +5,9 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 
 class ServiceWorkingHoursScreen extends StatefulWidget {
-  const ServiceWorkingHoursScreen({super.key});
+  final VoidCallback onNext;
+
+  const ServiceWorkingHoursScreen({super.key, required this.onNext});
 
   @override
   State<ServiceWorkingHoursScreen> createState() =>
@@ -122,7 +124,7 @@ class _ServiceWorkingHoursScreenState extends State<ServiceWorkingHoursScreen> {
               ),
               CustomButton(
                 btnText: "Next",
-                onTap: () {},
+                onTap: widget.onNext,
               ),
             ],
           ),

@@ -5,7 +5,7 @@ import 'package:homeapp/screens/common/notification_screen.dart';
 import 'package:homeapp/screens/payment/add_new_card_screen.dart';
 import 'package:homeapp/screens/payment/payment_screen.dart';
 import 'package:homeapp/screens/service_provider/edit_provider_profile.dart';
-import 'package:homeapp/screens/service_provider/phone_num_screen.dart';
+import 'package:homeapp/screens/service_provider/provider_phone_num_screen.dart';
 import 'package:homeapp/screens/service_provider/profession_screen.dart';
 import 'package:homeapp/screens/service_provider/profile_screen.dart';
 import 'package:homeapp/screens/service_provider/provider_otp_screen.dart';
@@ -43,7 +43,7 @@ class AppRoutes {
   static const String upgrade = "/upgrade";
   static const String accountSetup = "/accountSetup";
   static const String serviceProvider = "/serviceProvider";
-  static const String providerOtpScreen="/providerOtpScreen";
+  // static const String providerOtpScreen="/providerOtpScreen";
   // static const String phoneNumScreen="phoneNumScreen";
 }
 
@@ -92,8 +92,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => ServiceProviderScreen());
     // case AppRoutes.phoneNumScreen:
     //   return MaterialPageRoute(builder: (_)=>PhoneNumScreen());
-    case AppRoutes.providerOtpScreen:
-      return MaterialPageRoute(builder: (_)=>ProviderOtpScreen());
+    // case AppRoutes.providerOtpScreen:
+    //   return MaterialPageRoute(builder: (_)=>ProviderOtpScreen());
 // Default route
     default:
       return MaterialPageRoute(builder: (_) => Container());

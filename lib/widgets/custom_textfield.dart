@@ -3,27 +3,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/constants/app_colors.dart';
 
-
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final String? labelText;
   final Icon prefixIcon;
   final IconButton? suffixIcon;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
   final bool obscureText;
 
   const CustomTextField(
       {super.key,
-        required this.hintText,
-        this.labelText,
-        required this.prefixIcon,
-        this.suffixIcon,
-        required this.controller,
-        this.validator,
-        this.keyboardType,
-        this.obscureText = false});
+      required this.hintText,
+      this.labelText,
+      required this.prefixIcon,
+      this.suffixIcon,
+      this.controller,
+      this.validator,
+      this.keyboardType,
+      this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,6 @@ class CustomTextField extends StatelessWidget {
               color: AppColors.greyColor, // Border color when not focused
               width: 1.0, // Border width
             ),
-
           ),
         ),
       ),

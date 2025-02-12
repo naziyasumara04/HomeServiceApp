@@ -7,7 +7,8 @@ import 'package:homeapp/widgets/payment_widget.dart';
 import '../../core/constants/app_colors.dart';
 
 class PaymentMethodProviderScreen extends StatefulWidget {
-  const PaymentMethodProviderScreen({super.key});
+  final VoidCallback onNext;
+  const PaymentMethodProviderScreen({super.key, required this.onNext});
 
   @override
   State<PaymentMethodProviderScreen> createState() =>
@@ -83,7 +84,7 @@ class _PaymentMethodProviderScreenState
               SizedBox(
                 height: 50.h,
               ),
-              CustomButton(btnText: "Next")
+              CustomButton(btnText: "Next",onTap: widget.onNext,)
             ],
           ),
         ),
