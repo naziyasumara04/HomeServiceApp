@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 20.h,
         ),
-        CustomButton(btnText: "Sign In",onTap: (){
+        CustomButton(btnText: "Sign In", onTap: () {
           Navigator.pushNamed(context, AppRoutes.otp);
         },),
         SizedBox(
@@ -208,7 +208,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 
 
 }
