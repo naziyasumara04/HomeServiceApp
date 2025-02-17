@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
@@ -65,7 +66,7 @@ class _SeekerCreatePasswordScreenState
             CustomButton(
               btnText: "Save",
               onTap: () {
-                print("Saved");
+                Navigator.pushNamed(context, AppRoutes.dashboard);
               },
             )
           ],

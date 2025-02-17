@@ -167,13 +167,138 @@
 //   }
 // }
 
+//
+// import 'package:flutter/material.dart';
+// import 'package:geolocator/geolocator.dart';
+// import 'package:geocoding/geocoding.dart';
+//
+// class MapScreenDemo extends StatefulWidget {
+//   final VoidCallback onNext;
+//   const MapScreenDemo({super.key, required this.onNext});
+//
+//   @override
+//   State<MapScreenDemo> createState() => _MapScreenDemoState();
+// }
+//
+// class _MapScreenDemoState extends State<MapScreenDemo> {
+//   String address = "Fetching address...";
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _checkAndRequestPermission();
+//   }
+//
+//   Future<void> _checkAndRequestPermission() async {
+//     LocationPermission permission = await Geolocator.checkPermission();
+//
+//     if (permission == LocationPermission.denied) {
+//       permission = await Geolocator.requestPermission();
+//       if (permission == LocationPermission.denied) {
+//         setState(() {
+//           address = "Location permission denied!";
+//         });
+//         return;
+//       }
+//     }
+//
+//     if (permission == LocationPermission.deniedForever) {
+//       setState(() {
+//         address = "Location permission permanently denied. Enable from settings.";
+//       });
+//       _showSettingsDialog();
+//       return;
+//     }
+//
+//     getCurrentPosition();
+//   }
+//
+//   Future<void> _showSettingsDialog() async {
+//     showDialog(
+//       context: context,
+//       builder: (context) => AlertDialog(
+//         title: Text("Location Permission Required"),
+//         content: Text(
+//             "This app needs location permission to get your current address. Please enable it in settings."),
+//         actions: [
+//           TextButton(
+//             onPressed: () {
+//               Navigator.pop(context);
+//             },
+//             child: Text("Cancel"),
+//           ),
+//           TextButton(
+//             onPressed: () async {
+//               Navigator.pop(context);
+//               await Geolocator.openAppSettings();
+//             },
+//             child: Text("Open Settings"),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+//
+//   void getCurrentPosition() async {
+//     Position currentPosition = await Geolocator.getCurrentPosition(
+//         desiredAccuracy: LocationAccuracy.best);
+//
+//     getAddressFromCoordinates(
+//         currentPosition.latitude, currentPosition.longitude);
+//   }
+//
+//   Future<void> getAddressFromCoordinates(double lat, double lon) async {
+//     try {
+//       List<Placemark> placemarks = await placemarkFromCoordinates(lat, lon);
+//       Placemark place = placemarks[0];
+//
+//       setState(() {
+//         address =
+//         "${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+//       });
+//     } catch (e) {
+//       setState(() {
+//         address = "Failed to get address: $e";
+//       });
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(title: Text("Map Screen")),
+//         body: Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Text("Current Address:"),
+//               Padding(
+//                 padding: const EdgeInsets.all(10.0),
+//                 child: Text(
+//                   address,
+//                   textAlign: TextAlign.center,
+//                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+//                 ),
+//               ),
+//               ElevatedButton(
+//                   onPressed: () {
+//                     _checkAndRequestPermission();
+//                   },
+//                   child: Text("Get Current Location"))
+//             ],
+//           ),
+//         ));
+//   }
+// }
+//
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
 class MapScreenDemo extends StatefulWidget {
   final VoidCallback onNext;
-//
+
   const MapScreenDemo({super.key, required this.onNext});
 
   @override
@@ -181,25 +306,110 @@ class MapScreenDemo extends StatefulWidget {
 }
 
 class _MapScreenDemoState extends State<MapScreenDemo> {
-  String address = "Fetching address...";
+  String address = "Press the button to get location.";
+
+  void _showPermissionDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: Column(
+          children: [
+            // Image.asset("assets/map_preview.png", height: 150), // Add a map image
+            SizedBox(height: 10),
+            Text("Allow \"FixIt\" to use your location",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
+        content: Text(
+            "We need to know your exact location so that Clients can find you easily near you."),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _requestPermission(always: false);
+            },
+            child: Text("Allow Once", style: TextStyle(color: Colors.blue)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _requestPermission(always: true);
+            },
+            child: Text("Allow While Using FixIt",
+                style: TextStyle(color: Colors.blue)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              setState(() {
+                address = "Location access denied!";
+              });
+            },
+            child: Text("Don't Allow", style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _requestPermission({required bool always}) async {
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        setState(() {
+          address = "Location permission denied!";
+        });
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      setState(() {
+        address = "Permission permanently denied. Enable from settings.";
+      });
+      _showSettingsDialog(); // 🔹 Now calling the settings dialog here
+      return;
+    }
+
+    // If granted, fetch location
+    getCurrentPosition();
+  }
+
+  Future<void> _showSettingsDialog() async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Location Permission Required"),
+        content: Text(
+            "This app needs location permission to get your current address. Please enable it in settings."),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              await Geolocator.openAppSettings();
+            },
+            child: Text("Open Settings"),
+          ),
+        ],
+      ),
+    );
+  }
 
   void getCurrentPosition() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
-      print("Permission not granted");
-      await Geolocator.requestPermission();
-    } else {
-      Position currentPosition = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best);
+    Position currentPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
 
-      print("Longitude: ${currentPosition.longitude}");
-      print("Latitude: ${currentPosition.latitude}");
-
-      // Get the address from coordinates
-      getAddressFromCoordinates(
-          currentPosition.latitude, currentPosition.longitude);
-    }
+    getAddressFromCoordinates(
+        currentPosition.latitude, currentPosition.longitude);
   }
 
   Future<void> getAddressFromCoordinates(double lat, double lon) async {
@@ -209,13 +419,22 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
 
       setState(() {
         address =
-        "${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+            "${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
       });
     } catch (e) {
       setState(() {
         address = "Failed to get address: $e";
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showPermissionDialog();
+    });
+    print("initState Called");
   }
 
   @override
@@ -236,10 +455,7 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
                 ),
               ),
               ElevatedButton(
-                  onPressed: () {
-                    getCurrentPosition();
-                  },
-                  child: Text("Get Current Location"))
+                  onPressed: () {}, child: Text("Get Current Location"))
             ],
           ),
         ));
