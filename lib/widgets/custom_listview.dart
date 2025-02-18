@@ -16,12 +16,16 @@ class CustomListview extends StatelessWidget {
           itemCount: items.length,
           itemBuilder: (context, int index) {
             final item = items[index];
-            return Card(
+            return Padding(
+              padding: const EdgeInsets.only(right:10),
               child: Container(
                 height: 100.h,
                 width: 100.h,
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                decoration: BoxDecoration(color: AppColors.whiteColor),
+                padding: EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(6)),
                 child: Column(
                   children: [
                     Image.asset(item['imagepath']!),

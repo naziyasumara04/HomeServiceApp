@@ -36,4 +36,8 @@ class AppImages {
   static const mapImg="assets/images/mapImg.png";
   static const flatFeeImg="assets/images/flatFeeImg.png";
   static const hourImg="assets/images/hourImg.png";
+  static const girlImg="assets/images/girl.png";
+  static const multiMeter="assets/images/Multimeter.png";
+  static const plumber="assets/images/Plumber.png";
+  static const solarEnergy="assets/images/Solar Energy.png";
 }

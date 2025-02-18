@@ -107,7 +107,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/screens/common/home_screen.dart';
 import 'package:homeapp/screens/service_seeker/location_access_screen.dart';
-// import 'package:homeapp/screens/service_seeker/my_profile_screen.dart';
 import "package:homeapp/screens/service_seeker/my_profile_screen..dart";
 import 'package:homeapp/screens/service_seeker/order_status_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
