@@ -17,7 +17,6 @@ class _SeekerOtpScreenState extends State<SeekerOtpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: AppColors.lightBlueColor),
         title: Image.asset(
           AppImages.appLogo,
           height: 24,

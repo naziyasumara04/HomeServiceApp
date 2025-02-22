@@ -41,12 +41,6 @@ class _EditSeekerProfileState extends State<EditSeekerProfile> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.lightBlueColor),
-          onPressed: () {
-            Navigator.pop(context); // Go back
-          },
-        ),
         title: Text(
           "Edit profile",
           style: TextStyle(

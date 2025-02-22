@@ -29,7 +29,8 @@ class CustomListview extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(item['imagepath']!),
-                    Text(item['text']!),
+                    Text(item['text']!,
+                    style: Theme.of(context).textTheme.bodyLarge,),
                   ],
                 ),
               ),

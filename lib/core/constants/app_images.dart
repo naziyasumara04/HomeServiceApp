@@ -31,13 +31,57 @@ class AppImages {
   static const upgrade = "assets/images/upgrade.png";
   static const emailImg = "assets/images/emailImg.png";
   static const googleVerify = "assets/images/googleImg.png";
-  static const mobileNumImg="assets/images/mobileNumImg.png";
-  static const upgradeImg="assets/images/upgradeImg.png";
-  static const mapImg="assets/images/mapImg.png";
-  static const flatFeeImg="assets/images/flatFeeImg.png";
-  static const hourImg="assets/images/hourImg.png";
-  static const girlImg="assets/images/girl.png";
-  static const multiMeter="assets/images/Multimeter.png";
-  static const plumber="assets/images/Plumber.png";
-  static const solarEnergy="assets/images/Solar Energy.png";
+  static const mobileNumImg = "assets/images/mobileNumImg.png";
+  static const upgradeImg = "assets/images/upgradeImg.png";
+  static const mapImg = "assets/images/mapImg.png";
+  static const flatFeeImg = "assets/images/flatFeeImg.png";
+  static const hourImg = "assets/images/hourImg.png";
+  static const girlImg = "assets/images/girl.png";
+  static const multiMeter = "assets/images/Multimeter.png";
+  static const plumber = "assets/images/Plumber.png";
+  static const solarEnergy = "assets/images/Solar Energy.png";
+  static const airConditioner = "assets/images/Air Conditenior.png";
+  static const sidingRepair = "assets/images/Siding repair.png";
+  static const homeFlooring = "assets/images/Spin Mop.png";
+  static const gutterImg = "assets/images/Gutter.png";
+  static const carpetImg = "assets/images/Laundry.png";
+  static const drillingImg = "assets/images/Drilling.png";
+  static const lawnImg = "assets/images/lawn.png";
+  static const weedImg = "assets/images/Weed control.png";
+
+  static const cctvImg = "assets/images/CCTV.png";
+  static const alarmImg = "assets/images/alarm.png";
+  static const lockImg = "assets/images/lock.png";
+
+  static const carWash = "assets/images/Car Waxing.png";
+  static const oilChange = "assets/images/oil change.png";
+  static const carBattery = "assets/images/car battery.png";
+
+  static const furnitureImg = "assets/images/furniture.png";
+  static const doorImg = "assets/images/door.png";
+  static const shelvingImg = "assets/images/shelving.png";
+
+  static const interiorImg = "assets/images/Interior.png";
+  static const exteriorImg = "assets/images/Exterior.png";
+  static const wallImg = "assets/images/Wall.png";
+
+  static const dishWahImg = "assets/images/diashwash.png";
+  static const cuttingImg = "assets/images/cutting.png";
+  static const loadingImg = "assets/images/loading.png";
+
+  static const plumberImg = "assets/images/plumberImgg.png";
+  static const electricianImg = "assets/images/electricianImg.png";
+
+  static const smallElectricianImg = "assets/images/smallelectricianImg.png";
+  static const smallPlumberImg = "assets/images/smallplumberImg.png";
+  static const smallCarpenterImg = "assets/images/samllcarpenterImg.png";
+  static const smallCleanerImg = "assets/images/smallcleanerImg.png";
+  static const smallPainterImg = "assets/images/smallpainterImg.png";
+  static const smallMoverImg = "assets/images/smallmoverImg.png";
+  static const smallLockSmith = "assets/images/smalllocksmithImg.png";
+
+  static const electricityMeter="assets/images/Electricity Meter.png";
+
+
+  static const alarmClock="assets/images/alarmclock.png";
 }
