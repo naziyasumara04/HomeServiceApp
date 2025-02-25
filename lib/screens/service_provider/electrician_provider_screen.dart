@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homeapp/core/constants/app_images.dart';
+import 'package:homeapp/screens/service_provider/search_filter_screen.dart';
 import 'package:homeapp/widgets/custom_gridview.dart';
 
 class ElectricianProviderScreen extends StatefulWidget {
@@ -11,9 +12,6 @@ class ElectricianProviderScreen extends StatefulWidget {
 }
 
 class _ElectricianProviderScreenState extends State<ElectricianProviderScreen> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +20,14 @@ class _ElectricianProviderScreenState extends State<ElectricianProviderScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Icon(Icons.tune),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchFilterScreen()));
+                },
+                icon: Icon(Icons.tune)),
           )
         ],
       ),
@@ -101,5 +106,3 @@ class _ElectricianProviderScreenState extends State<ElectricianProviderScreen> {
     );
   }
 }
-
-

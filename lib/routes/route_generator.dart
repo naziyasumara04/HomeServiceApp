@@ -11,8 +11,12 @@ import 'package:homeapp/screens/service_provider/profession_screen.dart';
 import 'package:homeapp/screens/service_provider/profile_screen.dart';
 import 'package:homeapp/screens/service_provider/provider_otp_screen.dart';
 import 'package:homeapp/screens/service_provider/service_provider_screen.dart';
+import 'package:homeapp/screens/service_provider/summary_screen.dart';
 import 'package:homeapp/screens/service_provider/upgrade_screen.dart';
 import 'package:homeapp/screens/service_provider/verification_screen.dart';
+import 'package:homeapp/screens/service_provider/wiring_installation_address_screen.dart';
+import 'package:homeapp/screens/service_provider/wiring_installation_map_screen.dart';
+import 'package:homeapp/screens/service_provider/wiring_installation_time_screen.dart';
 import 'package:homeapp/screens/service_seeker/my_profile_screen..dart';
 import '../screens/auth/forget_password/forget_password_screen.dart';
 import '../screens/auth/otp/otp_screen.dart';
@@ -45,6 +49,10 @@ class AppRoutes {
   static const String accountSetup = "/accountSetup";
   static const String serviceProvider = "/serviceProvider";
   static const String electricService="/electricService";
+  static const String wiringInstallationMap="/wiringInstallationMap";
+  static const String wiringInstallationTime="/wiringInstallationTime";
+  static const String wiringInstallationAddress="/wiringInstallationAddress";
+  static const String summary="/summary";
   // static const String providerOtpScreen="/providerOtpScreen";
   // static const String phoneNumScreen="phoneNumScreen";
 }
@@ -92,7 +100,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case AppRoutes.serviceProvider:
       return MaterialPageRoute(builder: (_) => ServiceProviderScreen());
+    case AppRoutes.wiringInstallationMap:
+      return MaterialPageRoute(builder: (_)=>WiringInstallationMapScreen());
+    case AppRoutes.wiringInstallationAddress:
+      return MaterialPageRoute(builder: (_)=>WiringInstallationAddressScreen());
+    case AppRoutes.wiringInstallationTime:
+      return MaterialPageRoute(builder: (_)=>WiringInstallationTimeScreen());
 
+    case AppRoutes.summary:
+      return MaterialPageRoute(builder: (_)=>SummaryScreen());
     // case AppRoutes.electricService:
     //   return MaterialPageRoute(builder: (_)=>ElectricServiceScreen(electricWidget: Electr))
     // case AppRoutes.phoneNumScreen:

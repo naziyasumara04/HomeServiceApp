@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:homeapp/core/constants/app_colors.dart';
 
-class ProfileCard extends StatelessWidget {
+class CustomListCard extends StatelessWidget {
   final String cardText;
   final String cardImage;
   final VoidCallback? onTap;
   final bool showCont;
+  final Color? cardColor;
 
-  const ProfileCard({super.key,
+  const CustomListCard({super.key,
     required this.cardText,
     required this.cardImage,
     this.onTap,
-    this.showCont = false});
+    this.showCont = false, this.cardColor});
 
   @override
   Widget build(BuildContext context) {
     return Card(
+
+      color: cardColor??AppColors.whiteColor,
       child: ListTile(
           onTap: onTap,
           leading: Image.asset(

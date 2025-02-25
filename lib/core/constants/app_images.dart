@@ -80,8 +80,14 @@ class AppImages {
   static const smallMoverImg = "assets/images/smallmoverImg.png";
   static const smallLockSmith = "assets/images/smalllocksmithImg.png";
 
-  static const electricityMeter="assets/images/Electricity Meter.png";
+  static const electricityMeter = "assets/images/Electricity Meter.png";
 
+  static const alarmClock = "assets/images/alarmclock.png";
 
-  static const alarmClock="assets/images/alarmclock.png";
+  static const wiringImg = "assets/images/wiringImg.png";
+  static const electricalImg = "assets/images/electricalImg.png";
+  static const lightImg = "assets/images/lightImg.png";
+  static const fixtureImg = "assets/images/fixtureImg.png";
+  static const wiringInstallationImg =
+      "assets/images/wiringInstallationImg.png";
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/widgets/payment_widget.dart';
-import 'package:homeapp/widgets/profile_card.dart';
+import 'package:homeapp/widgets/custom_list_card.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 import '../../widgets/custom_button.dart';
@@ -190,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SizedBox(
           height: 10.h,
         ),
-        ProfileCard(
+        CustomListCard(
           cardText: "Edit Profile",
           cardImage: AppImages.editImg,
           showCont: true,
@@ -201,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
           cardText: "Profession",
           cardImage: AppImages.profession,
           showCont: true,
@@ -212,7 +212,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
           cardText: "Verification",
           cardImage: AppImages.verification,
           showCont: true,
@@ -233,7 +233,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 fontWeight: FontWeight.w500,
               ),
             )),
-        ProfileCard(
+        CustomListCard(
           cardText: "Payment Methods",
           cardImage: AppImages.paymentImg,
           showCont: true,
@@ -244,7 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
           cardText: "Upgrade",
           cardImage: AppImages.upgrade,
           showCont: true,
@@ -268,7 +268,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SizedBox(
           height: 10.h,
         ),
-        ProfileCard(
+        CustomListCard(
           cardText: "Notification",
           cardImage: AppImages.notifyImg,
           showCont: true,
@@ -279,7 +279,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
           cardText: "Help & Support",
           cardImage: AppImages.helpImg,
           showCont: true,
@@ -290,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
             // showCont: true,
             cardText: "Logout",
             cardImage: AppImages.logoutImg,

@@ -4,7 +4,7 @@ import 'package:homeapp/core/constants/app_colors.dart';
 import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/widgets/custom_button.dart';
-import '../../widgets/profile_card.dart';
+import '../../widgets/custom_list_card.dart';
 
 class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({super.key});
@@ -85,7 +85,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   Widget profileContainer() {
     return Column(
       children: [
-        ProfileCard(
+        CustomListCard(
           showCont: true,
           cardText: 'Edit Profile',
           cardImage: AppImages.editImg,
@@ -96,7 +96,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
             showCont: true,
             cardText: "Notification",
             cardImage: AppImages.notifyImg,
@@ -106,7 +106,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
             showCont: true,
             cardText: "Payment Method",
             cardImage: AppImages.paymentImg,
@@ -116,7 +116,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
             showCont: true,
             cardText: "Help & Support",
             cardImage: AppImages.helpImg,
@@ -126,7 +126,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         SizedBox(
           height: 5.h,
         ),
-        ProfileCard(
+        CustomListCard(
           // showCont: true,
             cardText: "Logout",
             cardImage: AppImages.logoutImg,

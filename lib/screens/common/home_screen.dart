@@ -299,7 +299,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
   Widget serviceProviders() {
     return Column(
       children: [
@@ -385,7 +384,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
-                  suffixIcon: Icon(Icons.tune),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SearchFilterScreen()));
+                      },
+                      icon: Icon(Icons.tune)),
                   hintText: _controller.text,
                   enabledBorder: InputBorder.none,
                   border: InputBorder.none,
