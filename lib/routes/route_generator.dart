@@ -48,13 +48,13 @@ class AppRoutes {
   static const String upgrade = "/upgrade";
   static const String accountSetup = "/accountSetup";
   static const String serviceProvider = "/serviceProvider";
-  static const String electricService="/electricService";
-  static const String wiringInstallationMap="/wiringInstallationMap";
-  static const String wiringInstallationTime="/wiringInstallationTime";
-  static const String wiringInstallationAddress="/wiringInstallationAddress";
-  static const String summary="/summary";
-  // static const String providerOtpScreen="/providerOtpScreen";
-  // static const String phoneNumScreen="phoneNumScreen";
+  static const String electricService = "/electricService";
+  static const String wiringInstallationMap = "/wiringInstallationMap";
+  static const String wiringInstallationTime = "/wiringInstallationTime";
+  static const String wiringInstallationAddress = "/wiringInstallationAddress";
+  static const String summary = "/summary";
+// static const String providerOtpScreen="/providerOtpScreen";
+// static const String phoneNumScreen="phoneNumScreen";
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -101,14 +101,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case AppRoutes.serviceProvider:
       return MaterialPageRoute(builder: (_) => ServiceProviderScreen());
     case AppRoutes.wiringInstallationMap:
-      return MaterialPageRoute(builder: (_)=>WiringInstallationMapScreen());
+      return MaterialPageRoute(builder: (_) => WiringInstallationMapScreen());
     case AppRoutes.wiringInstallationAddress:
-      return MaterialPageRoute(builder: (_)=>WiringInstallationAddressScreen());
-    case AppRoutes.wiringInstallationTime:
-      return MaterialPageRoute(builder: (_)=>WiringInstallationTimeScreen());
+      return MaterialPageRoute(
+          builder: (_) => WiringInstallationAddressScreen());
+    // case AppRoutes.wiringInstallationTime:
+    // return MaterialPageRoute(builder: (_)=>WiringInstallationTimeScreen());
 
-    case AppRoutes.summary:
-      return MaterialPageRoute(builder: (_)=>SummaryScreen());
+    // case AppRoutes.summary:
+
     // case AppRoutes.electricService:
     //   return MaterialPageRoute(builder: (_)=>ElectricServiceScreen(electricWidget: Electr))
     // case AppRoutes.phoneNumScreen:
@@ -120,4 +121,3 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => Container());
   }
 }
-

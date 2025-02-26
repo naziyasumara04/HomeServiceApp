@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/custom_card.dart';
 import '../../widgets/custom_gridview.dart';
 import 'electric_service_screen.dart';
 
@@ -129,7 +130,7 @@ class _SearchFilterScreenState extends State<SearchFilterScreen> {
           runSpacing: 8.0, // Vertical spacing between lines
           children: List.generate(serviceCardData.length, (index) {
             final data = serviceCardData[index];
-            return SmallCommonCard(
+            return CustomCard(
               cardText: data['text'],
               cardWidth: (data['width'] as double).w,
               // Adjust if using a responsive package
@@ -161,7 +162,7 @@ class _SearchFilterScreenState extends State<SearchFilterScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(availableCardData.length, (index) {
             final data = availableCardData[index];
-            return SmallCommonCard(
+            return CustomCard(
                 cardText: data['text'],
                 cardWidth: data['width'],
                 cardIcon: data['icon'],
@@ -294,7 +295,7 @@ class _SearchFilterScreenState extends State<SearchFilterScreen> {
           runSpacing: 8.0,
           children: List.generate(experienceCardData.length, (index) {
             final data = experienceCardData[index];
-            return SmallCommonCard(
+            return CustomCard(
                 cardText: data['text'],
                 cardWidth: data['width'],
                 isSelected: experienceIndex == index,
@@ -326,7 +327,7 @@ class _SearchFilterScreenState extends State<SearchFilterScreen> {
           runSpacing: 8.0,
           children: List.generate(specializationCardData.length, (index) {
             final data = specializationCardData[index];
-            return SmallCommonCard(
+            return CustomCard(
                 cardText: data['text'],
                 cardWidth: data['width'],
                 isSelected: specializationIndex == index,
@@ -342,59 +343,7 @@ class _SearchFilterScreenState extends State<SearchFilterScreen> {
   }
 }
 
-class SmallCommonCard extends StatelessWidget {
-  final IconData? cardIcon;
-  final String cardText;
-  final double cardWidth;
-  final bool isSelected;
-  final VoidCallback onTap;
 
-  const SmallCommonCard(
-      {super.key,
-      this.cardIcon,
-      required this.cardText,
-      required this.cardWidth,
-      required this.isSelected,
-      required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: cardWidth,
-        height: 30.h,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            color:
-                isSelected ? AppColors.lightBlueColor : AppColors.whiteColor),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (cardIcon != null) ...[
-              Icon(cardIcon!,
-                  size: 16,
-                  color: isSelected
-                      ? AppColors.whiteColor
-                      : AppColors.lightBlueColor),
-              SizedBox(
-                width: 5.w,
-              ),
-            ],
-            // cardIcon?SizedBox(width: 5.h,):SizedBox(width: 0,),
-            Text(
-              cardText,
-              style: TextStyle(
-                  color: isSelected
-                      ? AppColors.whiteColor
-                      : AppColors.lightBlueColor),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 // Widget electricCard({required bool showButton, required BuildContext context}) {
 //   return Container(
