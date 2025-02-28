@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/screens/service_provider/electrician_provider_screen.dart';
+import 'package:homeapp/screens/service_provider/plumber_service_provider.dart';
 import 'package:homeapp/widgets/custom_gridview.dart';
-
 import '../../core/constants/app_colors.dart';
 
 class AllServiceProviderScreen extends StatefulWidget {
@@ -28,22 +28,33 @@ class _AllServiceProviderScreenState extends State<AllServiceProviderScreen> {
   Widget buildBody() {
     return SingleChildScrollView(
       child: Padding(
-      padding: const EdgeInsets.all(14.0),
-
+        padding: const EdgeInsets.all(14.0),
         child: Column(
           children: [
             electricianProviders(),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             plumberProviders(),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             carpenterProviders(),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             painterProviders(),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             cleanerProviders(),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             locksmithProviders(),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             moverProviders()
           ],
         ),
@@ -139,20 +150,33 @@ class _AllServiceProviderScreenState extends State<AllServiceProviderScreen> {
             ),
           ],
         ),
-        CustomGridview(items: [
-          {
-            'imagepath': AppImages.electricianImg,
-            'title': 'Ethan lita ',
-            'subtitle': 'Plumber',
-            'rating': '4.5'
-          },
-          {
-            'imagepath': AppImages.electricianImg,
-            'title': 'Isabella una',
-            'subtitle': 'Plumber',
-            'rating': '4.5'
-          },
-        ]),
+        CustomGridview(
+            onTap: (item) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PlumberServiceProvider(
+                            image: item['imagepath'],
+                            title: item['title'],
+                            subTitle: item['subtitle'],
+                          )));
+              print("Tapped on: ${item['title']}");
+              // Navigate to a details page or show a dialog
+            },
+            items: [
+              {
+                'imagepath': AppImages.plumberGirl,
+                'title': 'Emily jani ',
+                'subtitle': 'Plumber',
+                'rating': '4.5'
+              },
+              {
+                'imagepath': AppImages.electricianImg,
+                'title': 'Isabella una',
+                'subtitle': 'Plumber',
+                'rating': '4.5'
+              },
+            ]),
       ],
     );
   }

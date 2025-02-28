@@ -48,6 +48,7 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

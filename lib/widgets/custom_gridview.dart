@@ -4,8 +4,16 @@ import 'package:homeapp/core/constants/app_colors.dart';
 
 class CustomGridview extends StatelessWidget {
   final List<Map<String, dynamic>> items;
+  final Function(Map<String, dynamic>)? onTap;
+  final double? imgHeight;
+  final double? imgWidth;
 
-  const CustomGridview({super.key, required this.items});
+  const CustomGridview(
+      {super.key,
+      required this.items,
+      this.onTap,
+      this.imgHeight,
+      this.imgWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +49,8 @@ class CustomGridview extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6)),
                     child: Image.asset(
                       item['imagepath'],
-                      height: 110.h,
-                      width: 72.w,
+                      height: imgHeight ?? 110.h,
+                      width: imgWidth ?? 72.w,
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -69,17 +77,17 @@ class CustomGridview extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        height: 20,
-                        width: 70,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                            color: AppColors.lightBlueColor,
-                            borderRadius: BorderRadius.circular(6)),
-                        child: InkWell(
-                          onTap: () {
-                            print("Details clicked for ${item['title']}");
-                          },
+                      GestureDetector(
+                        onTap: index == 0 && onTap != null
+                            ? () => onTap!(item)
+                            : null,
+                        child: Container(
+                          height: 20,
+                          width: 70,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              color: AppColors.lightBlueColor,
+                              borderRadius: BorderRadius.circular(6)),
                           child: Text("Details",
                               style: TextStyle(color: AppColors.whiteColor)),
                         ),

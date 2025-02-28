@@ -4,10 +4,10 @@ import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 import 'package:homeapp/widgets/payment_widget.dart';
 
-import '../../core/constants/app_colors.dart';
-
 class PaymentMethodProviderScreen extends StatefulWidget {
+
   final VoidCallback onNext;
+
   const PaymentMethodProviderScreen({super.key, required this.onNext});
 
   @override
@@ -18,6 +18,14 @@ class PaymentMethodProviderScreen extends StatefulWidget {
 class _PaymentMethodProviderScreenState
     extends State<PaymentMethodProviderScreen> {
   int isSelectedIndex = 0;
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   void handleSelection(int index) {
     setState(() {

@@ -1,3 +1,5 @@
+import 'package:awesome_bottom_bar/widgets/inspired/transition_container_builder.dart';
+
 class AppImages {
   static const appLogo = "assets/images/applogo.png";
   static const men = "assets/images/man.png";
@@ -90,4 +92,21 @@ class AppImages {
   static const fixtureImg = "assets/images/fixtureImg.png";
   static const wiringInstallationImg =
       "assets/images/wiringInstallationImg.png";
+  static const plumberGirl = "assets/images/plumberGirl.png";
+  static const ratingImg = "assets/images/ratingImg.png";
+  static const years = "assets/images/years.png";
+  static const joshPeter = "assets/images/joshPeter.png";
+  static const caleb = "assets/images/caleb.png";
+  static const ethan = "assets/images/ethan.png";
+  static const galleryImgOne = "assets/images/galleryImgOne.png";
+  static const galleryImgTwo = "assets/images/galleryImgTwo.png";
+  static const galleryImgThree = "assets/images/galleryImgThree.png";
+  static const galleryImgFour = "assets/images/galleryImgFour.png";
+  static const galleryImgFive = "assets/images/galleryImgFive.png";
+  static const galleryImgSix = "assets/images/galleryImgSix.png";
+  static const galleryImgSeven = "assets/images/galleryImgSeven.png";
+  static const galleryImgEight = "assets/images/galleryImgEight.png";
+
+
+
 }
