@@ -12,6 +12,7 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Text("order screen"),
+      //here add order pag paid unpaid or schedule
     );
   }
 }

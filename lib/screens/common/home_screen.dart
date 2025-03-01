@@ -4,6 +4,7 @@ import 'package:homeapp/core/constants/app_colors.dart';
 import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/screens/service_provider/all_service_provider_screen.dart';
 import 'package:homeapp/screens/service_provider/search_filter_screen.dart';
+import 'package:homeapp/screens/service_seeker/call_screen.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 import 'package:homeapp/widgets/custom_listview.dart';
 import '../../widgets/custom_gridview.dart';
@@ -105,7 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 14.0),
-            child: Icon(Icons.call),
+            child: InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CallScreen()));
+                },
+                child: Icon(Icons.call)),
           ),
           // Image.asset(AppImages.appLogo)
         ],
@@ -143,6 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           : Container())
                 ],
+              ),
+              SizedBox(
+                height: 20.h,
               ),
               serviceProviders()
             ],
