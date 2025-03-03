@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/core/constants/app_images.dart';
+import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/screens/common/home_screen.dart';
 
 import '../../core/constants/app_colors.dart';
@@ -116,8 +117,7 @@ class _CallScreenState extends State<CallScreen> {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            Navigator.pushNamed(context, AppRoutes.dashboard);
           },
           child: CircleAvatar(
             radius: 40,

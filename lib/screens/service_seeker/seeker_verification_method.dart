@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/screens/service_seeker/seeker_email_screen.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 import 'package:homeapp/widgets/payment_widget.dart';
-
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
+
 
 class SeekerVerificationMethod extends StatefulWidget {
   const SeekerVerificationMethod({super.key});

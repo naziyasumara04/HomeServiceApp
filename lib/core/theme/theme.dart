@@ -14,20 +14,25 @@ class AppTheme {
               fontSize: 18.sp),
           iconTheme: IconThemeData(color: AppColors.lightBlueColor)),
       textTheme: TextTheme(
-        // headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.blue),
-        bodyLarge: TextStyle(fontSize: 12.sp, color: AppColors.darkGreyColor,fontWeight: FontWeight.w600),
-        displayLarge: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w600,
-          color: AppColors.darkGreyColor,
-        ),
-          displaySmall:TextStyle(
+          // headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.blue),
+          bodyLarge: TextStyle(
+              fontSize: 12.sp,
+              color: AppColors.darkGreyColor,
+              fontWeight: FontWeight.w600),
+          displayLarge: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            color: AppColors.darkGreyColor,
+          ),
+          displaySmall: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+              color: AppColors.lightBlueColor),
+          bodySmall: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
-            color: AppColors.lightBlueColor
-
-          )
-      ),
+            color: AppColors.darkGreyColor,
+          )),
     );
   }
 }

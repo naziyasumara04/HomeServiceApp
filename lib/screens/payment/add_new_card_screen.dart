@@ -5,7 +5,8 @@ import 'package:homeapp/widgets/custom_button.dart';
 import '../../core/constants/app_colors.dart';
 
 class AddNewCardScreen extends StatefulWidget {
-  const AddNewCardScreen({super.key});
+  final VoidCallback? onTap;
+  const AddNewCardScreen({super.key, this.onTap});
 
   @override
   State<AddNewCardScreen> createState() => _AddNewCardScreenState();
@@ -48,7 +49,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
           SizedBox(height: 220.h),
           CustomButton(
             btnText: "Save",
-            onTap: (){},
+            onTap:widget.onTap,
           )
         ],
       ),
