@@ -38,7 +38,7 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 14.0),
       child: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               height: 20.h,
@@ -66,15 +66,17 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
             SizedBox(
               height: 20.h,
             ),
-            AccountCont(
-              selectedItem: !isSelected,
-              onTap: () {
-                setState(() {
-                  isSelected = false;
-                });
-              },
-              title: "Looking for service",
-              subTitle: "I am looking for home services.",
+            Center(
+              child: AccountCont(
+                selectedItem: !isSelected,
+                onTap: () {
+                  setState(() {
+                    isSelected = false;
+                  });
+                },
+                title: "Looking for service",
+                subTitle: "I am looking for home services.",
+              ),
             ),
             SizedBox(
               height: 40.h,

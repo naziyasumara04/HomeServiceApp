@@ -62,7 +62,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   Widget verifyText() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
           "Check your email",
@@ -90,7 +90,7 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget otpTextField() {
     return PinCodeTextField(
       controller: otpController,
-      maxLength: 4,
+      maxLength: 6,
       hideCharacter: true,
       autofocus: true,
       // hideCharacter: true,
@@ -127,12 +127,11 @@ class _OtpScreenState extends State<OtpScreen> {
         TextSpan(
             text: "Resend it",
             style: TextStyle(
-              color: AppColors.lightBlueColor,
-              fontWeight: FontWeight.w900,
-              decoration: TextDecoration.underline,
-              decorationThickness: 2.0,
-              height: 1.5
-            ))
+                color: AppColors.lightBlueColor,
+                fontWeight: FontWeight.w900,
+                decoration: TextDecoration.underline,
+                decorationThickness: 2.0,
+                height: 1.5))
       ]),
     );
   }

@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:homeapp/core/constants/app_images.dart';
-import 'package:homeapp/routes/route_generator.dart';
-import '../../core/constants/app_colors.dart';
+import 'package:homeapp/core/constants/app_colors.dart';
+import 'package:homeapp/screens/service_provider/plumber_service_provider.dart';
 
-class CallScreen extends StatefulWidget {
-  const CallScreen({super.key});
+class PlumberCallScreen extends StatefulWidget {
+  final String image;
+  final String title;
+  final String subTitle;
+
+  const PlumberCallScreen(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.subTitle});
 
   @override
-  State<CallScreen> createState() => _CallScreenState();
+  State<PlumberCallScreen> createState() => _PlumberCallScreenState();
 }
 
-class _CallScreenState extends State<CallScreen> {
+class _PlumberCallScreenState extends State<PlumberCallScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: buildBody(),
-    );
-  }
-
-  Widget buildBody() {
-    return Column(
-      children: [
-        SizedBox(
-          height: 150.h,
+      body: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 150.h,
+            ),
+            callDetails(),
+            SizedBox(
+              height: 250.h,
+            ),
+            callBtns(),
+          ],
         ),
-        callDetails(),
-        SizedBox(
-          height: 250.h,
-        ),
-        callBtns(),
-      ],
+      ),
     );
   }
 
@@ -41,12 +47,19 @@ class _CallScreenState extends State<CallScreen> {
             backgroundColor: Color.fromRGBO(234, 239, 244, 1),
             radius: 55,
             child: Image.asset(
-              AppImages.appLogo,
+              widget.image,
               height: 98,
               width: 98,
             )),
         SizedBox(
           height: 10.h,
+        ),
+        Text(
+          widget.title,
+          style: Theme.of(context).textTheme.displayLarge,
+        ),
+        SizedBox(
+          height: 5.h,
         ),
         Text("02:28 minutes"),
       ],
@@ -110,12 +123,17 @@ class _CallScreenState extends State<CallScreen> {
             ),
           ],
         ),
-        SizedBox(
-          height: 30.h,
-        ),
+        SizedBox(height: 30.h,),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, AppRoutes.dashboard);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PlumberServiceProvider(
+                          image: widget.image,
+                          title: widget.title,
+                          subTitle: widget.subTitle,
+                        )));
           },
           child: CircleAvatar(
             radius: 40,
@@ -130,4 +148,6 @@ class _CallScreenState extends State<CallScreen> {
       ],
     );
   }
+
+
 }

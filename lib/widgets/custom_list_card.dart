@@ -8,17 +8,21 @@ class CustomListCard extends StatelessWidget {
   final bool showCont;
   final Color? cardColor;
 
-  const CustomListCard({super.key,
-    required this.cardText,
-    required this.cardImage,
-    this.onTap,
-    this.showCont = false, this.cardColor});
+  const CustomListCard(
+      {super.key,
+      required this.cardText,
+      required this.cardImage,
+      this.onTap,
+      this.showCont = false,
+      this.cardColor});
+
+  // final String abc;
+  // String xyz;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-
-      color: cardColor??AppColors.whiteColor,
+      color: cardColor ?? AppColors.whiteColor,
       child: ListTile(
           onTap: onTap,
           leading: Image.asset(
@@ -35,16 +39,16 @@ class CustomListCard extends StatelessWidget {
           ),
           trailing: showCont
               ? Container(
-            height: 44,
-            width: 44,
-            decoration: BoxDecoration(
-                color: AppColors.lightBlueColor,
-                borderRadius: BorderRadius.circular(6)),
-            child: Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.whiteColor,
-            ),
-          )
+                  height: 44,
+                  width: 44,
+                  decoration: BoxDecoration(
+                      color: AppColors.lightBlueColor,
+                      borderRadius: BorderRadius.circular(6)),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: AppColors.whiteColor,
+                  ),
+                )
               : SizedBox()),
     );
   }

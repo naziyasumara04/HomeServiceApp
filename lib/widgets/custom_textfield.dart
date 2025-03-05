@@ -36,6 +36,9 @@ class CustomTextField extends StatelessWidget {
         keyboardType: keyboardType,
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle: TextStyle(
+            fontSize: 14,
+          ),
           labelText: labelText,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
