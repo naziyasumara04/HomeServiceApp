@@ -75,18 +75,18 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
         ),
       ),
       body: PageView(
-        children: _list,
         scrollDirection: Axis.horizontal,
         physics: NeverScrollableScrollPhysics(),
         // reverse: true,
         // physics: BouncingScrollPhysics(),
         controller: controller,
         pageSnapping: true,
-        onPageChanged: (num) {
+        onPageChanged: (number) {
           setState(() {
-            _curr = num;
+            _curr = number;
           });
         },
+        children: _list,
       ),
     );
   }

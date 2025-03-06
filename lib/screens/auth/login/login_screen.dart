@@ -211,7 +211,6 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_images.dart';
 import '../../../routes/route_generator.dart';
 import '../../../widgets/custom_button.dart';

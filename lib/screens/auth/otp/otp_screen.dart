@@ -35,25 +35,15 @@ class _OtpScreenState extends State<OtpScreen> {
       padding: const EdgeInsets.all(14.0),
       child: Column(
         children: [
-          SizedBox(
-            height: 120.h,
-          ),
+          SizedBox(height: 120.h),
           verifyText(),
-          SizedBox(
-            height: 20.h,
-          ),
+          SizedBox(height: 20.h),
           text(),
-          SizedBox(
-            height: 20.h,
-          ),
+          SizedBox(height: 20.h),
           otpTextField(),
-          SizedBox(
-            height: 30.h,
-          ),
+          SizedBox(height: 30.h),
           verifyButton(),
-          SizedBox(
-            height: 20.h,
-          ),
+          SizedBox(height: 20.h),
           resendText()
         ],
       ),
@@ -92,13 +82,20 @@ class _OtpScreenState extends State<OtpScreen> {
       controller: otpController,
       maxLength: 6,
       hideCharacter: true,
+      pinBoxHeight: 55.h,
+      pinBoxWidth: 40.w,
       autofocus: true,
-      // hideCharacter: true,
       highlight: true,
+      pinBoxDecoration:
+      ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+      pinTextAnimatedSwitcherTransition:
+      ProvidedPinBoxTextAnimation.scalingTransition,
       highlightColor: Colors.blue,
       defaultBorderColor: AppColors.darkGreyColor,
       highlightPinBoxColor: AppColors.lightGreyColor,
       focusNode: otpFocusNode,
+      pinBoxRadius: 16.0,
+
       keyboardType: TextInputType.number,
       onDone: (text) {
         Navigator.pushNamed(context, AppRoutes.otpSuccess);

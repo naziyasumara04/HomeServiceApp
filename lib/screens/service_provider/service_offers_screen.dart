@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_images.dart';
 
 class ServiceOffersScreen extends StatefulWidget {
   final VoidCallback onNext;

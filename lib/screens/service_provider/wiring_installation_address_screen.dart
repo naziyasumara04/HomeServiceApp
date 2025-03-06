@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/screens/service_provider/wiring_installation_time_screen.dart';
 import '../../core/constants/app_colors.dart';
 import '../../widgets/custom_button.dart';
@@ -86,7 +85,6 @@ class _WiringInstallationAddressScreenState
             CustomButton(
               btnText: 'Next',
               onTap: () {
-                print(addressController.text);
                 Navigator.push(
                     context,
                     MaterialPageRoute(

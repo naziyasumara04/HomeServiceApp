@@ -4,7 +4,6 @@ import 'package:homeapp/core/constants/app_colors.dart';
 import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/screens/service_seeker/seeker_phone_num_screen.dart';
-import 'package:homeapp/screens/service_seeker/service_seeker_screen.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 
 class AccountSetupScreen extends StatefulWidget {

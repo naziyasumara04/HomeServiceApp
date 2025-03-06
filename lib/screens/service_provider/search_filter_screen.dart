@@ -509,8 +509,8 @@ class GetServiceScreen extends StatefulWidget {
 }
 
 class _GetServiceScreenState extends State<GetServiceScreen> {
+  // ignore: prefer_final_fields
   TextEditingController _controller = TextEditingController();
-  bool _showList = false;
 
   @override
   Widget build(BuildContext context) {
@@ -537,7 +537,7 @@ class _GetServiceScreenState extends State<GetServiceScreen> {
                 onTap: () {
                   setState(() {
                     // _controller.text = _allServices[index]['name'];
-                    _showList = true; // Show the list when TextField is tapped
+// Show the list when TextField is tapped
                   });
                 },
                 decoration: InputDecoration(

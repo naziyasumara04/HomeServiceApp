@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool _showList = false;
 
+  // ignore: prefer_final_fields
   TextEditingController _controller = TextEditingController();
 
   Widget showSearchList() {
@@ -39,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
         borderRadius: BorderRadius.circular(10), // Rounded corners
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.3), // Soft shadow
             spreadRadius: 2,
             blurRadius: 5,
             offset: Offset(0, 3), // Position of the shadow

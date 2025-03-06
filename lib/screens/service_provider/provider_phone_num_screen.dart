@@ -47,7 +47,6 @@ class _PhoneNumScreenState extends State<PhoneNumScreen> {
             ),
             initialCountryCode: 'IN',
             onChanged: (phone) {
-              print(phone.completeNumber);
             },
           ),
           SizedBox(height: 60.h,),

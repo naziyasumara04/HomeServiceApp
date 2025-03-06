@@ -20,8 +20,11 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, AppRoutes.accountSetup);
+      if (mounted) {  // ✅ Check if the widget is still in the widget tree
+        Navigator.pushNamed(context, AppRoutes.accountSetup);
+      }
     });
+
     _controller = AnimationController(
       duration: Duration(milliseconds: 900),
       vsync: this,
@@ -32,14 +35,16 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
       curve: Curves.easeOutBack,
     );
 
-    // Simulating a successful verification
     Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        isVerified = true;
-        _controller.forward();
-      });
+      if (mounted) {  // ✅ Check again before calling setState
+        setState(() {
+          isVerified = true;
+          _controller.forward();
+        });
+      }
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +75,7 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
                 color: AppColors.lightBlueColor,
               ),
             )
-          : CircularProgressIndicator(), // Show loader before animation
+          : CircularProgressIndicator(),
     );
   }
 

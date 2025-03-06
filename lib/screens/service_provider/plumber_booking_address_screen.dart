@@ -94,7 +94,6 @@ class _PlumberBookingAddressScreenState
             CustomButton(
               btnText: 'Next',
               onTap: () {
-                print(addressController.text);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
