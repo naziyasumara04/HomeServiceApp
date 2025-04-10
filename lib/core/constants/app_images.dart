@@ -1,5 +1,3 @@
-import 'package:awesome_bottom_bar/widgets/inspired/transition_container_builder.dart';
-
 class AppImages {
   static const appLogo = "assets/images/applogo.png";
   static const men = "assets/images/man.png";

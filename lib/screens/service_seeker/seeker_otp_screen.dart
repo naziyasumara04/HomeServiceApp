@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homeapp/screens/service_provider/provider_otp_screen.dart';
 import 'package:homeapp/screens/service_seeker/seeker_create_password_screen.dart';
-import 'package:homeapp/screens/service_seeker/seeker_verification_method.dart';
-import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 
 class SeekerOtpScreen extends StatefulWidget {

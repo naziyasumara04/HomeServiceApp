@@ -5,16 +5,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:homeapp/core/constants/app_colors.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 
-class MapScreen extends StatefulWidget {
+class MapScreenDemo extends StatefulWidget {
   final VoidCallback onNext;
 
-  const MapScreen({super.key, required this.onNext});
+  const MapScreenDemo({super.key, required this.onNext});
 
   @override
-  State<MapScreen> createState() => _MapScreenDemoState();
+  State<MapScreenDemo> createState() => _MapScreenDemoState();
 }
 
-class _MapScreenDemoState extends State<MapScreen> {
+class _MapScreenDemoState extends State<MapScreenDemo> {
   String address = "Current location...";
   LatLng? _currentPosition;
   GoogleMapController? _mapController;
@@ -98,9 +98,7 @@ class _MapScreenDemoState extends State<MapScreen> {
         content: Text("Please enable location permission in settings."),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => Navigator.pop(context),
             child: Text("Cancel"),
           ),
           TextButton(
@@ -168,24 +166,22 @@ class _MapScreenDemoState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text("Map Screen")),
+      appBar: AppBar(title: Text("Map Screen")),
       body: Stack(
         children: [
-          SafeArea(
-            child: GoogleMap(
-              initialCameraPosition:
-                  CameraPosition(target: LatLng(20.5937, 78.9629), zoom: 14),
-              myLocationEnabled: false,
-              markers:
-                  _currentLocationMarker != null ? {_currentLocationMarker!} : {},
-              onMapCreated: (GoogleMapController controller) {
-                _mapController = controller;
-                if (_currentPosition != null) {
-                  _mapController?.animateCamera(
-                      CameraUpdate.newLatLngZoom(_currentPosition!, 15));
-                }
-              },
-            ),
+          GoogleMap(
+            initialCameraPosition:
+                CameraPosition(target: LatLng(20.5937, 78.9629), zoom: 5),
+            myLocationEnabled: false,
+            markers:
+                _currentLocationMarker != null ? {_currentLocationMarker!} : {},
+            onMapCreated: (GoogleMapController controller) {
+              _mapController = controller;
+              if (_currentPosition != null) {
+                _mapController?.animateCamera(
+                    CameraUpdate.newLatLngZoom(_currentPosition!, 15));
+              }
+            },
           ),
           Positioned(
             bottom: 0,
@@ -243,6 +239,7 @@ class _MapScreenDemoState extends State<MapScreen> {
                       border: OutlineInputBorder(),
                     ),
                   ),
+
                   SizedBox(height: 10),
                   TextField(
                     controller: businessAddressController,
@@ -254,8 +251,9 @@ class _MapScreenDemoState extends State<MapScreen> {
                   SizedBox(height: 10),
                   CustomButton(
                     btnText: "Next",
-                    onTap:  widget.onNext
+                    onTap: () {
                       // Navigator.pushNamed(context, AppRoutes.otp);
+                    },
                   ),
                 ],
               ),
@@ -266,5 +264,3 @@ class _MapScreenDemoState extends State<MapScreen> {
     );
   }
 }
-
-

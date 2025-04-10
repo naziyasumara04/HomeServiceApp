@@ -160,7 +160,6 @@ class _AllServiceProviderScreenState extends State<AllServiceProviderScreen> {
                             title: item['title'],
                             subTitle: item['subtitle'],
                           )));
-              print("Tapped on: ${item['title']}");
               // Navigate to a details page or show a dialog
             },
             items: [

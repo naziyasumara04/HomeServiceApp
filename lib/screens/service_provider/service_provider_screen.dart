@@ -77,7 +77,6 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
         ),
       ),
       body: PageView(
-        children: _list,
         scrollDirection: Axis.horizontal,
         physics: NeverScrollableScrollPhysics(),
         // reverse: true,
@@ -89,6 +88,7 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
             _curr = number;
           });
         },
+        children: _list,
       ),
     );
   }

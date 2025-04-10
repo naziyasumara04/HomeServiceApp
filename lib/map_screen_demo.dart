@@ -37,15 +37,14 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
 
   void getCurrentPosition() async {
     if (!hasPermission) {
-      print("Location permission not granted.");
+
       return;
     }
 
     Position currentPosition = await Geolocator.getCurrentPosition(
+        // ignore: deprecated_member_use
         desiredAccuracy: LocationAccuracy.best);
 
-    print("Longitude: ${currentPosition.longitude}");
-    print("Latitude: ${currentPosition.latitude}");
 
     getAddressFromCoordinates(
         currentPosition.latitude, currentPosition.longitude);

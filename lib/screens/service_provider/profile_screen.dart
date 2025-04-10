@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/routes/route_generator.dart';
-import 'package:homeapp/widgets/payment_widget.dart';
 import 'package:homeapp/widgets/custom_list_card.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';

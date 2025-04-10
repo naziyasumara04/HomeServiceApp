@@ -7,9 +7,8 @@ import 'dart:async';
 
 class ProviderOtpScreen extends StatefulWidget {
   final VoidCallback onNext;
+
   const ProviderOtpScreen({super.key, required this.onNext});
-
-
 
   @override
   State<ProviderOtpScreen> createState() => _ProviderOtpScreenState();
@@ -22,31 +21,13 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
   Timer? _timer;
   FocusNode otpFocusNode = FocusNode();
 
-  // void _startCountdown() {
-  //   if (_timer != null) {
-  //     _timer!.cancel(); // Cancel previous timer if any
-  //   }
-  //   setState(() {
-  //     _counter = 60; // Reset counter when button is clicked
-  //   });
-  //
-  //   _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-  //     if (_counter > 0) {
-  //       setState(() {
-  //         _counter--;
-  //       });
-  //     } else {
-  //       timer.cancel(); // Stop timer when it reaches 0
-  //     }
-  //   });
-  // }
-
   @override
   void dispose() {
     _timer?.cancel();
     otpFocusNode.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,52 +40,27 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         children: [
-          SizedBox(
-            height: 40.h,
-          ),
+          SizedBox(height: 40.h),
           Text(
-            "Enter PIN code sent to your phone number",
+            "Enter 5-digit PIN code sent to your phone number",
             style: TextStyle(
                 color: AppColors.darkGreyColor,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp),
           ),
-          SizedBox(
-            height: 40.h,
-          ),
+          SizedBox(height: 40.h),
           pinCodeField(),
-          SizedBox(
-            height: 40.h,
-          ),
+          SizedBox(height: 40.h),
           CustomButton(
             btnText: "Verify",
-            // _startCountdown
             onTap: widget.onNext,
           ),
-          SizedBox(
-            height: 20.h,
-          ),
+          SizedBox(height: 20.h),
           otpText()
         ],
       ),
     );
   }
-
-  // Widget pinCodeField() {
-  //   return PinCodeTextField(
-  //     autofocus: true,
-  //     controller: pinCodeController,
-  //     hideCharacter: true,
-  //     highlight: true,
-  //     pinBoxRadius: 6,
-  //     pinBoxWidth: 60,
-  //     pinBoxHeight: 60,
-  //     defaultBorderColor: AppColors.borderColor,
-  //     hasTextBorderColor: AppColors.borderColor,
-  //     maxLength: 5,
-  //     maskCharacter: "*",
-  //   );
-  // }
 
   Widget pinCodeField() {
     return PinCodeTextField(
@@ -121,26 +77,27 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
       pinBoxWidth: 48.w,
       pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
       pinTextAnimatedSwitcherTransition:
-      ProvidedPinBoxTextAnimation.scalingTransition,
+          ProvidedPinBoxTextAnimation.scalingTransition,
       highlightColor: Colors.blue,
       highlightPinBoxColor: AppColors.lightGreyColor,
       focusNode: otpFocusNode,
     );
   }
+
   Widget otpText() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-            height: 24,
-            width: 24,
+            height: 30,
+            width: 30,
+            padding: EdgeInsets.all(4.0),
             decoration: BoxDecoration(
-                border: Border.all(color: AppColors.lightBlueColor),
-                borderRadius: BorderRadius.circular(50)),
+              shape: BoxShape.circle,
+              border: Border.all(color: AppColors.lightBlueColor),
+                ),
             child: Center(child: Text('$_counter'))),
-        SizedBox(
-          width: 10.w,
-        ),
+        SizedBox(width: 10.w),
         Text(
           "Did not received code? ",
           style: TextStyle(
@@ -161,7 +118,4 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
       ],
     );
   }
-
-
-
 }
