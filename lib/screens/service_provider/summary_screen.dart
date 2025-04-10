@@ -104,7 +104,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
             children: [
               Text("Booking Date",
                   style: TextStyle(color: AppColors.borderColor, fontSize: 12)),
-              Text('${DateFormat('dd MMMM yyyy').format(widget.selectedDate)}',
+              Text(DateFormat('dd MMMM yyyy').format(widget.selectedDate),
                   style:
                       TextStyle(color: AppColors.darkGreyColor, fontSize: 12)),
             ],

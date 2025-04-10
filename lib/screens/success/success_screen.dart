@@ -20,7 +20,9 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, AppRoutes.accountSetup);
+      if (mounted) { //check if widget is still in the widget
+        Navigator.pushNamed(context, AppRoutes.accountSetup);
+      }
     });
     _controller = AnimationController(
       duration: Duration(milliseconds: 900),
@@ -34,10 +36,14 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
 
     // Simulating a successful verification
     Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        isVerified = true;
-        _controller.forward();
-      });
+
+
+      if(mounted) {
+        setState(() {
+          isVerified = true;
+          _controller.forward();
+        });
+      }
     });
   }
 

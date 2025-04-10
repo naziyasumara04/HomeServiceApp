@@ -537,7 +537,9 @@ class _GetServiceScreenState extends State<GetServiceScreen> {
                 onTap: () {
                   setState(() {
                     // _controller.text = _allServices[index]['name'];
-                    _showList = true; // Show the list when TextField is tapped
+                    // _showList = true;
+                    //
+                    // Show the list when TextField is tapped
                   });
                 },
                 decoration: InputDecoration(

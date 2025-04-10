@@ -11,10 +11,11 @@ class CustomCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const CustomCard(
-      {super.key,
+      {
+        super.key,
         this.cardIcon,
         required this.cardText,
-         this.cardWidth,
+        this.cardWidth,
         required this.isSelected,
         required this.onTap});
 

@@ -10,3 +10,6 @@ class AppColors {
   static const darkGreyColor = Color.fromRGBO(86, 86, 86, 1);
   static const scaffoldBackgroundColor = Color.fromRGBO(249, 249, 249, 1);
 }
+
+
+

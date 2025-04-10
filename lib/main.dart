@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/core/theme/theme.dart';
 import 'package:homeapp/routes/route_generator.dart';
+import 'package:homeapp/shared_preference_demo.dart';
 
+import 'demo_screen.dart';
 import 'map_screen_demo.dart';
 
 void main() {
@@ -19,14 +21,14 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-
       builder: (_, child) {
         return MaterialApp(
           theme: AppTheme.lightTheme,
           debugShowCheckedModeBanner: false,
-          title: 'First Method',
+          title: 'Fixit',
           initialRoute: "/splash",
-          // home: MapScreenDemo(),
+          // home: SharedPreferenceDemo(),
+          // home: DemoScreen(),
           onGenerateRoute: generateRoute,
         );
       },

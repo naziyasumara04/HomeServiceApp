@@ -9,41 +9,44 @@ class ProviderOtpScreen extends StatefulWidget {
   final VoidCallback onNext;
   const ProviderOtpScreen({super.key, required this.onNext});
 
+
+
   @override
   State<ProviderOtpScreen> createState() => _ProviderOtpScreenState();
 }
 
 class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
-  int _counter = 60;
+  final int _counter = 60;
   final TextEditingController pinCodeController = TextEditingController();
 
   Timer? _timer;
+  FocusNode otpFocusNode = FocusNode();
 
-  void _startCountdown() {
-    if (_timer != null) {
-      _timer!.cancel(); // Cancel previous timer if any
-    }
-    setState(() {
-      _counter = 60; // Reset counter when button is clicked
-    });
-
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_counter > 0) {
-        setState(() {
-          _counter--;
-        });
-      } else {
-        timer.cancel(); // Stop timer when it reaches 0
-      }
-    });
-  }
+  // void _startCountdown() {
+  //   if (_timer != null) {
+  //     _timer!.cancel(); // Cancel previous timer if any
+  //   }
+  //   setState(() {
+  //     _counter = 60; // Reset counter when button is clicked
+  //   });
+  //
+  //   _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+  //     if (_counter > 0) {
+  //       setState(() {
+  //         _counter--;
+  //       });
+  //     } else {
+  //       timer.cancel(); // Stop timer when it reaches 0
+  //     }
+  //   });
+  // }
 
   @override
   void dispose() {
-    _timer?.cancel(); // Cancel timer when widget is removed
+    _timer?.cancel();
+    otpFocusNode.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +63,7 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
             height: 40.h,
           ),
           Text(
-            "Enter 5-digit PIN code sent to your phone number",
+            "Enter PIN code sent to your phone number",
             style: TextStyle(
                 color: AppColors.darkGreyColor,
                 fontWeight: FontWeight.w500,
@@ -87,22 +90,43 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
     );
   }
 
+  // Widget pinCodeField() {
+  //   return PinCodeTextField(
+  //     autofocus: true,
+  //     controller: pinCodeController,
+  //     hideCharacter: true,
+  //     highlight: true,
+  //     pinBoxRadius: 6,
+  //     pinBoxWidth: 60,
+  //     pinBoxHeight: 60,
+  //     defaultBorderColor: AppColors.borderColor,
+  //     hasTextBorderColor: AppColors.borderColor,
+  //     maxLength: 5,
+  //     maskCharacter: "*",
+  //   );
+  // }
+
   Widget pinCodeField() {
     return PinCodeTextField(
       autofocus: true,
-      controller: pinCodeController,
       hideCharacter: true,
       highlight: true,
-      pinBoxRadius: 6,
-      pinBoxWidth: 60,
-      pinBoxHeight: 60,
-      defaultBorderColor: AppColors.borderColor,
+      pinBoxRadius: 16.0,
+      defaultBorderColor: AppColors.darkGreyColor,
       hasTextBorderColor: AppColors.borderColor,
-      maxLength: 5,
+      maxLength: 6,
       maskCharacter: "*",
+      controller: pinCodeController,
+      pinBoxHeight: 55.h,
+      pinBoxWidth: 48.w,
+      pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+      pinTextAnimatedSwitcherTransition:
+      ProvidedPinBoxTextAnimation.scalingTransition,
+      highlightColor: Colors.blue,
+      highlightPinBoxColor: AppColors.lightGreyColor,
+      focusNode: otpFocusNode,
     );
   }
-
   Widget otpText() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -137,4 +161,7 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
       ],
     );
   }
+
+
+
 }

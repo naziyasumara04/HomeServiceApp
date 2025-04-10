@@ -14,16 +14,27 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Text("Feedback screen"),
-          CustomButton(
-            btnText: "Send",
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.dashboard);
-            }
-          ),
-        ],
+      appBar: AppBar(
+        title: Text("Give your Feedback"),
+      ),
+      body: buildBody(),
+    );
+  }
+
+  Widget buildBody() {
+    return Padding(
+      padding: const EdgeInsets.all(14.0),
+      child: Center(
+        child: Column(
+          children: [
+            Text("How was your experience with Fix it?"),
+            CustomButton(
+                btnText: "Send",
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.dashboard);
+                }),
+          ],
+        ),
       ),
     );
   }

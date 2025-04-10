@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:homeapp/core/constants/app_colors.dart';
 import 'package:homeapp/core/constants/app_images.dart';
 import 'package:homeapp/widgets/custom_listview.dart';
 
@@ -197,8 +196,12 @@ class _PopularServicesState extends State<PopularServices> {
               'imagepath': AppImages.dishWahImg,
               'text': 'Dish wash',
             },
-            {'imagepath': AppImages.loadingImg, 'text': 'Loading'},
-            {'imagepath': AppImages.cuttingImg, 'text': 'Cutting'},
+            {
+              'imagepath': AppImages.loadingImg,
+              'text': 'Loading'},
+            {
+              'imagepath': AppImages.cuttingImg,
+              'text': 'Cutting'},
             {
               'imagepath': AppImages.dishWahImg,
               'text': 'Dish wash',

@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/routes/route_generator.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
+import '../../../data/local/shared_keys.dart';
+import '../../../data/local/shared_prefs.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_textfield.dart';
 
@@ -21,6 +23,45 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   bool _obscureoldText = true;
   bool _obscurenewText = true;
   bool _obscureconfirmText = true;
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // newdata();
+  // }
+  //
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  // }
+
+  void resetDataStore() async {
+    await setKeyFromPrefs(
+        SharedPreferencesKeys.resetOldPassword, oldpasswordController.text);
+    await setKeyFromPrefs(
+        SharedPreferencesKeys.resetNewPassword, newpasswordController.text);
+    await setKeyFromPrefs(SharedPreferencesKeys.resetConfirmPassword,
+        confirmpasswordController.text);
+
+    String oldPassword =
+        await getKeyFromPrefs(SharedPreferencesKeys.resetOldPassword);
+
+    String newPassword =
+        await getKeyFromPrefs(SharedPreferencesKeys.resetNewPassword);
+
+    String confirmPassword =
+        await getKeyFromPrefs(SharedPreferencesKeys.resetConfirmPassword);
+
+    print("Old: ${oldPassword}");
+    print("New: ${newPassword}");
+    print("Confirm: ${confirmPassword}");
+    print("from controller");
+    print("Old: ${oldpasswordController.text}");
+    print("New: ${newpasswordController.text}");
+    print("Confirm: ${confirmpasswordController.text}");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +198,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return CustomButton(
       btnText: "Update password",
       onTap: () {
+        resetDataStore();
         Navigator.pushNamed(context, AppRoutes.otp);
       },
     );

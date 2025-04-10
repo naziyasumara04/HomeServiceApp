@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:homeapp/core/constants/app_colors.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
+      fontFamily: GoogleFonts.poppins().fontFamily,
       primaryColor: AppColors.lightBlueColor,
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
       appBarTheme: AppBarTheme(
@@ -15,24 +17,27 @@ class AppTheme {
           iconTheme: IconThemeData(color: AppColors.lightBlueColor)),
       textTheme: TextTheme(
           // headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.blue),
-          bodyLarge: TextStyle(
+          bodyLarge: GoogleFonts.poppins(
               fontSize: 12.sp,
               color: AppColors.darkGreyColor,
               fontWeight: FontWeight.w600),
-          displayLarge: TextStyle(
+          displayLarge: GoogleFonts.poppins(
             fontSize: 16.sp,
             fontWeight: FontWeight.w600,
             color: AppColors.darkGreyColor,
           ),
-          displaySmall: TextStyle(
+          displaySmall: GoogleFonts.poppins(
               fontSize: 12.sp,
               fontWeight: FontWeight.w500,
               color: AppColors.lightBlueColor),
-          bodySmall: TextStyle(
+          bodySmall: GoogleFonts.poppins(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
             color: AppColors.darkGreyColor,
           )),
     );
   }
+
+
+
 }

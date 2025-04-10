@@ -91,20 +91,43 @@ class _OtpScreenState extends State<OtpScreen> {
     return PinCodeTextField(
       controller: otpController,
       maxLength: 6,
-      hideCharacter: true,
-      autofocus: true,
       // hideCharacter: true,
+      pinBoxHeight: 55.h,
+      pinBoxWidth: 40.w,
+      autofocus: true,
       highlight: true,
+      pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+      pinTextAnimatedSwitcherTransition:
+          ProvidedPinBoxTextAnimation.scalingTransition,
       highlightColor: Colors.blue,
       defaultBorderColor: AppColors.darkGreyColor,
       highlightPinBoxColor: AppColors.lightGreyColor,
       focusNode: otpFocusNode,
+      pinBoxRadius: 16.0,
       keyboardType: TextInputType.number,
       onDone: (text) {
         Navigator.pushNamed(context, AppRoutes.otpSuccess);
       },
     );
   }
+
+  // Widget otpTextField() {
+  //   return PinCodeTextField(
+  //     controller: otpController,
+  //     maxLength: 6,
+  //     hideCharacter: true,
+  //     autofocus: true,
+  //     highlight: true,
+  //     highlightColor: Colors.blue,
+  //     defaultBorderColor: AppColors.darkGreyColor,
+  //     highlightPinBoxColor: AppColors.lightGreyColor,
+  //     focusNode: otpFocusNode,
+  //     keyboardType: TextInputType.number,
+  //     onDone: (text) {
+  //       Navigator.pushNamed(context, AppRoutes.otpSuccess);
+  //     },
+  //   );
+  // }
 
   Widget verifyButton() {
     return CustomButton(

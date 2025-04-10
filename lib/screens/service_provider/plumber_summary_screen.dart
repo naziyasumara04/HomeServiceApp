@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/widgets/electrician_card.dart';
 import 'package:intl/intl.dart';
-
 import '../../core/constants/app_colors.dart';
 import '../../routes/route_generator.dart';
 import '../../widgets/custom_button.dart';
@@ -116,7 +115,7 @@ class _PlumberSummaryScreenState extends State<PlumberSummaryScreen> {
             children: [
               Text("Booking Date",
                   style: TextStyle(color: AppColors.borderColor, fontSize: 12)),
-              Text('${DateFormat('dd MMMM yyyy').format(widget.selectedDate)}',
+              Text(DateFormat('dd MMMM yyyy').format(widget.selectedDate),
                   style:
                       TextStyle(color: AppColors.darkGreyColor, fontSize: 12)),
             ],
@@ -149,6 +148,7 @@ class _PlumberSummaryScreenState extends State<PlumberSummaryScreen> {
       ),
     );
   }
+
 
   void orderReceived() {
     showDialog(
@@ -211,11 +211,8 @@ class _PlumberSummaryScreenState extends State<PlumberSummaryScreen> {
           );
         });
   }
+
+
 }
 
-// Text(
-// '${addressController.text},${streetNoController.text},${houseNoController.text}'),
-// Text(widget.subTitle),
-// Text(widget.title),
-// Image.asset(widget.image),
-// Text('${DateFormat('MMMM/DD/yy').format(widget.selectedDate)}')
+

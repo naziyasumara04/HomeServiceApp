@@ -23,7 +23,8 @@ class _SeekerOtpScreenState extends State<SeekerOtpScreen> {
           width: 28,
         ),
       ),
-      body: ProviderOtpScreen(onNext: () {
+      body: ProviderOtpScreen(
+          onNext: () {
         Navigator.push(
             context,
             MaterialPageRoute(

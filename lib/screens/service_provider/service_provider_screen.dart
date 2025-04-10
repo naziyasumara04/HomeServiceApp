@@ -6,6 +6,7 @@ import 'package:homeapp/screens/service_provider/pricing_rate_screen.dart';
 import 'package:homeapp/screens/service_provider/provider_otp_screen.dart';
 import 'package:homeapp/screens/service_provider/service_offers_screen.dart';
 import 'package:homeapp/screens/service_provider/service_working_hours_screen.dart';
+import 'package:homeapp/screens/service_provider/upload_doc_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
@@ -30,9 +31,10 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
     _list = [
       PhoneNumScreen(onNext: _goToNextPage),
       ProviderOtpScreen(onNext: _goToNextPage),
-      MapScreenDemo(onNext: _goToNextPage),
+      MapScreen(onNext: _goToNextPage),
       ServiceOffersScreen(onNext: _goToNextPage),
       ServiceWorkingHoursScreen(onNext: _goToNextPage),
+      UploadDocScreen(onNext: _goToNextPage),
       PaymentMethodProviderScreen(onNext: _goToNextPage),
       AddAccountDetailScreen(onNext: _goToNextPage),
       PricingRateScreen(onNext: _goToNextPage),
@@ -82,9 +84,9 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
         // physics: BouncingScrollPhysics(),
         controller: controller,
         pageSnapping: true,
-        onPageChanged: (num) {
+        onPageChanged: (number) {
           setState(() {
-            _curr = num;
+            _curr = number;
           });
         },
       ),

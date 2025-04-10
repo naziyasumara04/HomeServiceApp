@@ -3,8 +3,6 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_images.dart';
 import 'onboarding_screen.dart';
 
-
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -13,7 +11,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 5), () {
@@ -31,23 +28,23 @@ class _SplashScreenState extends State<SplashScreen> {
       // });
     });
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient:LinearGradient(colors: [
-            Colors.white,
-            AppColors.lightBlueColor,
-            // Colors.grey
-          ],
-          // begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.white,
+                AppColors.lightBlueColor,
+                // Colors.grey
+              ],
+              // begin: Alignment.topLeft,
+              //   end: Alignment.bottomRight
+            ),
           ),
-
-        ),
           child: Center(child: Image.asset(AppImages.appLogo))),
     );
   }
