@@ -31,7 +31,7 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
     _list = [
       PhoneNumScreen(onNext: _goToNextPage),
       ProviderOtpScreen(onNext: _goToNextPage),
-      MapScreen(onNext: _goToNextPage),
+      MapScreenDemo(onNext: _goToNextPage),
       ServiceOffersScreen(onNext: _goToNextPage),
       ServiceWorkingHoursScreen(onNext: _goToNextPage),
       UploadDocScreen(onNext: _goToNextPage),

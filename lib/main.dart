@@ -27,8 +27,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Fixit',
           initialRoute: "/splash",
-          // home: SharedPreferenceDemo(),
-          // home: DemoScreen(),
           onGenerateRoute: generateRoute,
         );
       },

@@ -16,6 +16,8 @@ class ForgetPasswordScreen extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+
+
   final TextEditingController oldpasswordController = TextEditingController();
   final TextEditingController newpasswordController = TextEditingController();
   final TextEditingController confirmpasswordController =
@@ -24,18 +26,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   bool _obscurenewText = true;
   bool _obscureconfirmText = true;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   // newdata();
-  // }
-  //
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  // }
+
 
   void resetDataStore() async {
     await setKeyFromPrefs(
@@ -45,22 +36,22 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     await setKeyFromPrefs(SharedPreferencesKeys.resetConfirmPassword,
         confirmpasswordController.text);
 
-    String oldPassword =
+    // String oldPassword =
         await getKeyFromPrefs(SharedPreferencesKeys.resetOldPassword);
 
-    String newPassword =
+    // String newPassword =
         await getKeyFromPrefs(SharedPreferencesKeys.resetNewPassword);
 
-    String confirmPassword =
+    // String confirmPassword =
         await getKeyFromPrefs(SharedPreferencesKeys.resetConfirmPassword);
 
-    print("Old: ${oldPassword}");
-    print("New: ${newPassword}");
-    print("Confirm: ${confirmPassword}");
-    print("from controller");
-    print("Old: ${oldpasswordController.text}");
-    print("New: ${newpasswordController.text}");
-    print("Confirm: ${confirmpasswordController.text}");
+    // print("Old: ${oldPassword}");
+    // print("New: ${newPassword}");
+    // print("Confirm: ${confirmPassword}");
+    // print("from controller");
+    // print("Old: ${oldpasswordController.text}");
+    // print("New: ${newpasswordController.text}");
+    // print("Confirm: ${confirmpasswordController.text}");
   }
 
   @override
@@ -203,4 +194,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       },
     );
   }
+
+
+
 }

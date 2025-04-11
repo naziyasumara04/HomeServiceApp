@@ -23,6 +23,18 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscureText = true;
   bool _isChecked = false;
 
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   storeSignUpData();
+  // }
+  //
+  // void storeSignUpData() async{
+  //
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -258,4 +270,6 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+
+
 }
