@@ -40,14 +40,14 @@ class _DemoScreenState extends State<DemoScreen> {
                   setAddress = placemarks.last.locality.toString();
                 });
               } catch (e) {
-                print("Error,$e");
+
                 setState(() {
                   setAddress = "failed to get address";
                   setAdd = "failes to get addd";
                 });
               }
 
-              child:
+
               Text(
                 "Convert",
                 style: TextStyle(

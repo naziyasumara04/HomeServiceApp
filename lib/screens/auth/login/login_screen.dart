@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // }
 
   Future<void> saveLoginData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
 
     // await prefs.setString(SharedPreferencesKeys.signInEmail, emailController.text);
     await setKeyFromPrefs(

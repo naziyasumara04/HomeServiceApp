@@ -185,9 +185,7 @@ class _UploadButtonState extends State<UploadButton> {
 
       // Debugging Logs
       Directory appDir = await getApplicationDocumentsDirectory();
-      print("App Directory: ${appDir.path}");
-      print("Selected Image Path: ${_image!.path}");
-      print("Selected Image Name: $_imageName");
+
     }
   }
 

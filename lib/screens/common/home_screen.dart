@@ -7,6 +7,7 @@ import 'package:homeapp/screens/service_provider/search_filter_screen.dart';
 import 'package:homeapp/screens/service_seeker/call_screen.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 import 'package:homeapp/widgets/custom_listview.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../widgets/custom_gridview.dart';
 import '../service_provider/electric_service_screen.dart';
 import '../service_provider/popular_services.dart';
@@ -90,6 +91,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  final String fromNumber = '+919510234855';
+  final String toNumber = '+918469516632';
+
+  Future<void> _makeCall(String number) async {
+    final Uri url = Uri(scheme: 'tel', path: number);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $number';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,14 +120,22 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 14.0),
             child: InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CallScreen()));
-                },
-                child: Icon(Icons.call)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CallScreen(
+                      fromNumber: '+918888888888',
+                      toNumber: '+918469516632',
+                    ),
+                  ),
+                );
+              },
+              child: Icon(Icons.call),
+            ),
           ),
-          // Image.asset(AppImages.appLogo)
         ],
+
       ),
       body: buildBody(),
     );

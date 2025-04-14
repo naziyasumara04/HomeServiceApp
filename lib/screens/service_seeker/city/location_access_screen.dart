@@ -15,7 +15,7 @@ class LocationAccessScreen extends StatefulWidget {
 class _LocationAccessScreenState extends State<LocationAccessScreen> {
 
   GoogleMapController? _mapController;
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   Marker? _currentLocationMarker;
   bool _showWrongButton = false;
   bool _showImageMap = false;
@@ -51,7 +51,7 @@ class _LocationAccessScreenState extends State<LocationAccessScreen> {
         });
       }
     } catch (e) {
-      print("Location not found: $e");
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Location not found")),
       );
@@ -142,11 +142,9 @@ class CityImageScreen extends StatefulWidget {
 }
 
 class _CityImageScreenState extends State<CityImageScreen> {
-  GoogleMapController? _controller;
 
-  // Marker? _Locationmarker;
   Set<Marker> markers = {};
-  CameraPosition? _initialPosition;
+
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -184,7 +182,6 @@ class _CityImageScreenState extends State<CityImageScreen> {
               markers: markers,
               onMapCreated: (GoogleMapController mapController) {
                 setState(() {
-                  _controller = mapController;
                 });
               }),
         ),

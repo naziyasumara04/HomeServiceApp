@@ -25,12 +25,12 @@ class _SplashScreenState extends State<SplashScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // var isLoggedIn = await prefs.getBool(SharedPreferencesKeys.keySignIn);
-    bool isLoggedIn =await  prefs.getBool(SharedPreferencesKeys.keySignIn) ?? false;
+    bool isLoggedIn =prefs.getBool(SharedPreferencesKeys.keySignIn) ?? false;
 
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         if (isLoggedIn) {
-          Navigator.pushReplacementNamed(context, AppRoutes.accountSetup); // 👈 Replace with your actual home route
+          Navigator.pushReplacementNamed(context, AppRoutes.accountSetup);
         } else {
           Navigator.pushReplacement(
             context,
