@@ -16,7 +16,7 @@ import 'package:homeapp/screens/service_seeker/my_profile_screen..dart';
 import '../screens/auth/forget_password/forget_password_screen.dart';
 import '../screens/auth/otp/otp_screen.dart';
 import '../screens/common/account_setup_screen.dart';
-import '../screens/success/success_screen.dart';
+import '../screens/success/otp_success_screen.dart';
 import '../screens/auth/signup/signup_screen.dart';
 import '../screens/onboarding/splash_screen.dart';
 import '../screens/service_seeker/dashboard_screen.dart';

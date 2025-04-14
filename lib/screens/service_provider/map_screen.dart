@@ -3,18 +3,19 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:homeapp/core/constants/app_colors.dart';
+import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/widgets/custom_button.dart';
 
-class MapScreenDemo extends StatefulWidget {
+class MapScreen extends StatefulWidget {
   final VoidCallback onNext;
 
-  const MapScreenDemo({super.key, required this.onNext});
+  const MapScreen({super.key, required this.onNext});
 
   @override
-  State<MapScreenDemo> createState() => _MapScreenDemoState();
+  State<MapScreen> createState() => _MapScreenState();
 }
 
-class _MapScreenDemoState extends State<MapScreenDemo> {
+class _MapScreenState extends State<MapScreen> {
   String address = "Current location...";
   LatLng? _currentPosition;
   GoogleMapController? _mapController;
@@ -119,14 +120,16 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
           desiredAccuracy: LocationAccuracy.best);
 
       setState(() {
+
+
         _currentPosition =
             LatLng(currentPosition.latitude, currentPosition.longitude);
-        _currentLocationMarker = Marker(
-          markerId: MarkerId("currentLocation"),
-          position: _currentPosition!,
-          infoWindow: InfoWindow(title: "My Address"),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
-        );
+        // _currentLocationMarker = Marker(
+        //   markerId: MarkerId("currentLocation"),
+        //   position: _currentPosition!,
+        //   infoWindow: InfoWindow(title: "My address"),
+        //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
+        // );
       });
 
       if (_mapController != null) {
@@ -153,8 +156,15 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
 
       setState(() {
         address =
-            "${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+            "${place.locality}, ${place.administrativeArea}, ${place.country}";
         businessAddressController.text = address;
+        _currentLocationMarker = Marker(
+          markerId: MarkerId("currentLocation"),
+          position: _currentPosition!,
+          infoWindow: InfoWindow(title:address),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
+        );
+
       });
     } catch (e) {
       setState(() {
@@ -166,18 +176,20 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Map Screen")),
+      // appBar: AppBar(title: Text("Map Screen")),
       body: Stack(
         children: [
           GoogleMap(
             initialCameraPosition:
                 CameraPosition(target: LatLng(20.5937, 78.9629), zoom: 5),
-            myLocationEnabled: false,
+            // myLocationEnabled: false,
+            myLocationEnabled: true,
             markers:
                 _currentLocationMarker != null ? {_currentLocationMarker!} : {},
             onMapCreated: (GoogleMapController controller) {
               _mapController = controller;
               if (_currentPosition != null) {
+                // getCurrentPosition();
                 _mapController?.animateCamera(
                     CameraUpdate.newLatLngZoom(_currentPosition!, 15));
               }
@@ -239,7 +251,6 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
                       border: OutlineInputBorder(),
                     ),
                   ),
-
                   SizedBox(height: 10),
                   TextField(
                     controller: businessAddressController,
@@ -249,12 +260,7 @@ class _MapScreenDemoState extends State<MapScreenDemo> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  CustomButton(
-                    btnText: "Next",
-                    onTap: () {
-                      // Navigator.pushNamed(context, AppRoutes.otp);
-                    },
-                  ),
+                  CustomButton(btnText: "Next", onTap: widget.onNext),
                 ],
               ),
             ),

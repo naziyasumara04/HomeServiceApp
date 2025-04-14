@@ -31,7 +31,7 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
     _list = [
       PhoneNumScreen(onNext: _goToNextPage),
       ProviderOtpScreen(onNext: _goToNextPage),
-      MapScreenDemo(onNext: _goToNextPage),
+      MapScreen(onNext: _goToNextPage),
       ServiceOffersScreen(onNext: _goToNextPage),
       ServiceWorkingHoursScreen(onNext: _goToNextPage),
       UploadDocScreen(onNext: _goToNextPage),
@@ -79,8 +79,6 @@ class _ServiceProviderScreenState extends State<ServiceProviderScreen> {
       body: PageView(
         scrollDirection: Axis.horizontal,
         physics: NeverScrollableScrollPhysics(),
-        // reverse: true,
-        // physics: BouncingScrollPhysics(),
         controller: controller,
         pageSnapping: true,
         onPageChanged: (number) {

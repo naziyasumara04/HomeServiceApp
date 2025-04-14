@@ -37,7 +37,6 @@ class _SeekerCreatePasswordScreenState
     );
   }
 
-
   Widget buildBody() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
@@ -47,6 +46,7 @@ class _SeekerCreatePasswordScreenState
             SizedBox(
               height: 20.h,
             ),
+            //password text
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Align(
@@ -63,6 +63,7 @@ class _SeekerCreatePasswordScreenState
             SizedBox(
               height: 30.h,
             ),
+            //save button
             CustomButton(
               btnText: "Save",
               onTap: () {
@@ -75,7 +76,7 @@ class _SeekerCreatePasswordScreenState
     );
   }
 
-
+  //enter password field
   Widget passwordField() {
     return Column(
       children: [

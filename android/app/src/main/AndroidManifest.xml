@@ -8,7 +8,13 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="homeapp">
+        android:label="Fixit">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD9ri3ToYAIePnCaZkqupJE8N7MAzbEyKw"/>
+
+
+
 
         <activity
             android:name=".MainActivity"

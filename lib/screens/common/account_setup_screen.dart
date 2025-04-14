@@ -52,6 +52,7 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
             SizedBox(
               height: 20.h,
             ),
+            //service provider cont
             AccountCont(
               selectedItem: isSelected,
               onTap: () {
@@ -65,6 +66,7 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
             SizedBox(
               height: 20.h,
             ),
+            //looking for service container
             Center(
               child: AccountCont(
                 selectedItem: !isSelected,
@@ -80,15 +82,12 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
             SizedBox(
               height: 40.h,
             ),
+            //next button
             CustomButton(
               btnText: "Next",
               onTap: () {
                 if (isSelected) {
                   Navigator.pushNamed(context, AppRoutes.serviceProvider);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => ServiceProviderScreen()));
                 } else {
                   Navigator.push(
                       context,
@@ -103,6 +102,8 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
     );
   }
 }
+
+//service provider and looking for service container's class
 
 class AccountCont extends StatelessWidget {
   final String title;
@@ -123,12 +124,13 @@ class AccountCont extends StatelessWidget {
         height: 152,
         width: 327,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(
-                color: selectedItem
-                    ? AppColors.lightBlueColor
-                    : AppColors.borderColor,
-                width: 1)),
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+              color: selectedItem
+                  ? AppColors.lightBlueColor
+                  : AppColors.borderColor,
+              width: 1),
+        ),
         child: ListTile(
           onTap: onTap,
           contentPadding: EdgeInsets.symmetric(vertical: 35, horizontal: 20),
