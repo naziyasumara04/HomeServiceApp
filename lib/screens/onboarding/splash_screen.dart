@@ -17,20 +17,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     whereToGo();
-
     super.initState();
   }
 
+
+  //skip login screen if user logged in
   void whereToGo() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // var isLoggedIn = await prefs.getBool(SharedPreferencesKeys.keySignIn);
-    bool isLoggedIn =await  prefs.getBool(SharedPreferencesKeys.keySignIn) ?? false;
+    bool isLoggedIn =
+        await prefs.getBool(SharedPreferencesKeys.keySignIn) ?? false;
 
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         if (isLoggedIn) {
-          Navigator.pushReplacementNamed(context, AppRoutes.accountSetup); // 👈 Replace with your actual home route
+          Navigator.pushNamed(context, AppRoutes.signIn);
+          // Navigator.pushReplacementNamed(context, AppRoutes.accountSetup);
         } else {
           Navigator.pushReplacement(
             context,
@@ -50,10 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
               colors: [
                 Colors.white,
                 AppColors.lightBlueColor,
-                // Colors.grey
               ],
-              // begin: Alignment.topLeft,
-              //   end: Alignment.bottomRight
             ),
           ),
           child: Center(child: Image.asset(AppImages.appLogo))),

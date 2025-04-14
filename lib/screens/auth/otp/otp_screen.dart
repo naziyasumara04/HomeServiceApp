@@ -18,12 +18,6 @@ class _OtpScreenState extends State<OtpScreen> {
   FocusNode otpFocusNode = FocusNode();
 
   @override
-  void dispose() {
-    otpFocusNode.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildBody(),
@@ -60,6 +54,7 @@ class _OtpScreenState extends State<OtpScreen> {
     );
   }
 
+  //email verify text
   Widget verifyText() {
     return Row(
       // mainAxisAlignment: MainAxisAlignment.start,
@@ -75,6 +70,7 @@ class _OtpScreenState extends State<OtpScreen> {
     );
   }
 
+  //text
   Widget text() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -87,6 +83,7 @@ class _OtpScreenState extends State<OtpScreen> {
     );
   }
 
+  //otp text field
   Widget otpTextField() {
     return PinCodeTextField(
       controller: otpController,
@@ -111,33 +108,18 @@ class _OtpScreenState extends State<OtpScreen> {
     );
   }
 
-  // Widget otpTextField() {
-  //   return PinCodeTextField(
-  //     controller: otpController,
-  //     maxLength: 6,
-  //     hideCharacter: true,
-  //     autofocus: true,
-  //     highlight: true,
-  //     highlightColor: Colors.blue,
-  //     defaultBorderColor: AppColors.darkGreyColor,
-  //     highlightPinBoxColor: AppColors.lightGreyColor,
-  //     focusNode: otpFocusNode,
-  //     keyboardType: TextInputType.number,
-  //     onDone: (text) {
-  //       Navigator.pushNamed(context, AppRoutes.otpSuccess);
-  //     },
-  //   );
-  // }
-
+  //Verify code button
   Widget verifyButton() {
     return CustomButton(
       btnText: "Verify Code",
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.otpSuccess);
+        Navigator.pushNamed(
+            context, AppRoutes.otpSuccess); //Navigate to otp success screen
       },
     );
   }
 
+  //resend otp text
   Widget resendText() {
     return RichText(
       text: TextSpan(children: [
@@ -157,5 +139,11 @@ class _OtpScreenState extends State<OtpScreen> {
                 height: 1.5))
       ]),
     );
+  }
+
+  @override
+  void dispose() {
+    otpFocusNode.dispose();
+    super.dispose();
   }
 }

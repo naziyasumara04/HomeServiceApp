@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:homeapp/data/local/shared_keys.dart';
+import 'package:homeapp/data/local/shared_prefs.dart';
 import 'package:homeapp/routes/route_generator.dart';
-
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
 import '../../../widgets/custom_button.dart';
@@ -23,17 +24,19 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscureText = true;
   bool _isChecked = false;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   storeSignUpData();
-  // }
-  //
-  // void storeSignUpData() async{
-  //
-  // }
+//store signup data through shared_preferences
+  void storeSignUpData() async {
+    await setKeyFromPrefs(
+        SharedPreferencesKeys.signupName, nameController.text);
+    await setKeyFromPrefs(
+        SharedPreferencesKeys.signupEmail, emailController.text);
+    await setKeyFromPrefs(
+        SharedPreferencesKeys.signInPassword, passwordController.text);
 
+    await getKeyFromPrefs(SharedPreferencesKeys.signupName);
+    await getKeyFromPrefs(SharedPreferencesKeys.signupEmail);
+    await getKeyFromPrefs(SharedPreferencesKeys.signInPassword);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +74,21 @@ class _SignupScreenState extends State<SignupScreen> {
         SizedBox(
           height: 10.h,
         ),
-        CustomButton(btnText: "Sign Up",onTap: (){
-          Navigator.pushNamed(context, AppRoutes.otp);
-        },),
-        SizedBox(height: 20.h,),
-        signinText(),
-        SizedBox(height: 10.h,),
+        //signup button
+        CustomButton(
+          btnText: "Sign Up",
+          onTap: () {
+            storeSignUpData();
+            Navigator.pushNamed(context, AppRoutes.otp);
+          },
+        ),
+        SizedBox(
+          height: 20.h,
+        ),
+        signInText(),
+        SizedBox(
+          height: 10.h,
+        ),
         orCont(),
         signupWith(),
         socialButton()
@@ -84,6 +96,7 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  //signup text
   Widget signupText() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
@@ -99,14 +112,16 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  //name textField
   Widget name() {
     return CustomTextField(
         hintText: "Full name",
-        prefixIcon:Icon(CupertinoIcons.person_alt_circle, size: 24, color: Colors.black),
-
+        prefixIcon: Icon(CupertinoIcons.person_alt_circle,
+            size: 24, color: Colors.black),
         controller: nameController);
   }
 
+  //email textField
   Widget email() {
     return CustomTextField(
       hintText: 'Enter your email',
@@ -115,6 +130,7 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  //password textField
   Widget password() {
     return CustomTextField(
       hintText: "Enter your password",
@@ -136,6 +152,7 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  //terms & conditions text
   Widget termCheck() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -145,14 +162,6 @@ class _SignupScreenState extends State<SignupScreen> {
               checkColor: AppColors.lightBlueColor,
               focusColor: AppColors.lightBlueColor,
               activeColor: AppColors.lightBlueColor,
-              // side: MaterialStateProperty.resolveWith<BorderSide>(
-              //       (Set<MaterialState> states) {
-              //     if (states.contains(MaterialState.selected)) {
-              //       return BorderSide(color: AppColors.lightBlueColor, width: 2.0); // Blue border when checked
-              //     }
-              //     return BorderSide(color: AppColors.lightBlueColor, width: 2.0); // Blue border when unchecked
-              //   },
-              // ),
               side: BorderSide(color: AppColors.lightBlueColor, width: 2.0),
               fillColor: WidgetStateProperty.resolveWith<Color>(
                 (Set<WidgetState> states) {
@@ -194,33 +203,37 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget signinText() {
+  //SignIn text
+  Widget signInText() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Already have an account?",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AppColors.darkGreyColor
-          ),),
+          Text(
+            "Already have an account?",
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.darkGreyColor),
+          ),
           GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, AppRoutes.signIn);
               },
-              child: Text(" Sign in now",
+              child: Text(
+                " Sign in now",
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.lightBlueColor
-                ),)),
+                    color: AppColors.lightBlueColor),
+              )),
         ],
       ),
     );
   }
 
+  //divider
   Widget orCont() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
@@ -240,18 +253,21 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  //text
   Widget signupWith() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
-      child: Text("Sign up with",
-      style: TextStyle(
-        color: AppColors.darkGreyColor,
-        fontWeight: FontWeight.w500,
-        fontSize: 14
-      ),),
+      child: Text(
+        "Sign up with",
+        style: TextStyle(
+            color: AppColors.darkGreyColor,
+            fontWeight: FontWeight.w500,
+            fontSize: 14),
+      ),
     );
   }
 
+  //social buttons
   Widget socialButton() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
@@ -265,11 +281,9 @@ class _SignupScreenState extends State<SignupScreen> {
           CustomSocialButton(
             text: 'Facebook',
             imageUrl: AppImages.facebookImg,
-          )
+          ),
         ],
       ),
     );
   }
-
-
 }

@@ -20,26 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _obscureText = true;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //
-  // }
-
+//saved login data through shared_preference
   Future<void> saveLoginData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // await prefs.setString(SharedPreferencesKeys.signInEmail, emailController.text);
+    // final SharedPreferences prefs = await SharedPreferences.getInstance();
     await setKeyFromPrefs(
         SharedPreferencesKeys.signInEmail, emailController.text);
     await setKeyFromPrefs(
         SharedPreferencesKeys.signInPassword, passwordController.text);
-    // await prefs.setString(SharedPreferencesKeys.signInPassword, passwordController.text);
-    // await prefs.setBool(SharedPreferencesKeys.keySignIn, true);
-    // final savedEmail=await getKeyFromPrefs(SharedPreferencesKeys.signInEmail);
+      // final savedEmail=await getKeyFromPrefs(SharedPreferencesKeys.signInEmail);
     // final savedPassword=await getKeyFromPrefs(SharedPreferencesKeys.signInPassword);
-
 
   }
 
@@ -68,30 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
             buildPasswordField(),
             buildForgotPasswordText(),
             const SizedBox(height: 20),
-            CustomButton(
-              btnText: "Sign In",
-              onTap: () async {
-                if (emailController.text.isNotEmpty &&
-                    passwordController.text.isNotEmpty) {
-                  // Save data
-                  await saveLoginData();
-
-                  // Optionally validate saved data
-                  final prefs = await SharedPreferences.getInstance();
-                  final savedEmail = prefs.getString(SharedPreferencesKeys.signInEmail);
-                  final savedPassword = prefs.getString(SharedPreferencesKeys.signInPassword);
-
-                  if (savedEmail != null && savedPassword != null) {
-                    Navigator.pushNamed(context, AppRoutes.accountSetup);
-                  } else {
-                    Navigator.pushNamed(context, AppRoutes.otp);
-                  }
-                } else {
-                  Navigator.pushNamed(context, AppRoutes.otp);
-                }
-              },
-
-            ),
+            buildSignInButton(),
             const SizedBox(height: 15),
             buildSignupText(),
             buildOrDivider(),
@@ -102,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+//email field
   Widget buildEmailField() {
     return TextField(
       controller: emailController,
@@ -113,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+//password field
   Widget buildPasswordField() {
     return TextField(
       controller: passwordController,
@@ -135,7 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget buildForgotPasswordText() {
+  //text
+   Widget buildForgotPasswordText() {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
@@ -150,6 +119,36 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  //signIn button
+  Widget buildSignInButton(){
+    return  CustomButton(
+      btnText: "Sign In",
+      onTap: () async {
+        if (emailController.text.isNotEmpty &&
+            passwordController.text.isNotEmpty) {
+          // Save data
+          await saveLoginData();
+
+          // Optionally validate saved data
+          final prefs = await SharedPreferences.getInstance();
+          final savedEmail = prefs.getString(SharedPreferencesKeys.signInEmail);
+          final savedPassword = prefs.getString(SharedPreferencesKeys.signInPassword);
+
+          if (savedEmail != null && savedPassword != null) {
+            // Navigator.pushNamed(context, AppRoutes.accountSetup);
+            Navigator.pushNamed(context, AppRoutes.otp);
+          } else {
+            Navigator.pushNamed(context, AppRoutes.otp);
+          }
+        } else {
+          Navigator.pushNamed(context, AppRoutes.otp);
+        }
+      },
+
+    );
+  }
+
+  //signup text
   Widget buildSignupText() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -168,6 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  //Divider
   Widget buildOrDivider() {
     return Row(
       children: const [
@@ -181,6 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  //Social Buttons
   Widget socialButton() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
@@ -199,4 +200,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+
 }

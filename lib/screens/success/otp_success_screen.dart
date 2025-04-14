@@ -65,6 +65,7 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
     );
   }
 
+  //Success Check widget
   Widget successCheck() {
     return Center(
       child: isVerified
@@ -80,6 +81,7 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
     );
   }
 
+  //successfully verified text
   Widget successText() {
     return Text(
       "Successfully verified",
@@ -95,4 +97,5 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen>
     _controller.dispose();
     super.dispose();
   }
+
 }

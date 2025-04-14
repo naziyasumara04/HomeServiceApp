@@ -41,8 +41,9 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
       child: Column(
         children: [
           SizedBox(height: 40.h),
+          //otp text
           Text(
-            "Enter 5-digit PIN code sent to your phone number",
+            "Enter 6-digit PIN code sent to your phone number",
             style: TextStyle(
                 color: AppColors.darkGreyColor,
                 fontWeight: FontWeight.w500,
@@ -51,6 +52,7 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
           SizedBox(height: 40.h),
           pinCodeField(),
           SizedBox(height: 40.h),
+          //verify button
           CustomButton(
             btnText: "Verify",
             onTap: widget.onNext,
@@ -62,6 +64,7 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
     );
   }
 
+  //otp field
   Widget pinCodeField() {
     return PinCodeTextField(
       autofocus: true,
@@ -84,6 +87,7 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
     );
   }
 
+  //otp text
   Widget otpText() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +99,7 @@ class _ProviderOtpScreenState extends State<ProviderOtpScreen> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.lightBlueColor),
-                ),
+            ),
             child: Center(child: Text('$_counter'))),
         SizedBox(width: 10.w),
         Text(
