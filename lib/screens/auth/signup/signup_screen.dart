@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/data/local/shared_keys.dart';
 import 'package:homeapp/data/local/shared_prefs.dart';
 import 'package:homeapp/routes/route_generator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
+import '../../../core/helpers/validators.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_social_button.dart';
 import '../../../widgets/custom_textfield.dart';
@@ -18,6 +20,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -25,17 +28,39 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _isChecked = false;
 
 //store signup data through shared_preferences
-  void storeSignUpData() async {
+  Future<void> storeSignUpData() async {
     await setKeyFromPrefs(
         SharedPreferencesKeys.signupName, nameController.text);
     await setKeyFromPrefs(
         SharedPreferencesKeys.signupEmail, emailController.text);
     await setKeyFromPrefs(
-        SharedPreferencesKeys.signInPassword, passwordController.text);
+        SharedPreferencesKeys.signupPassword, passwordController.text);
 
-    await getKeyFromPrefs(SharedPreferencesKeys.signupName);
-    await getKeyFromPrefs(SharedPreferencesKeys.signupEmail);
-    await getKeyFromPrefs(SharedPreferencesKeys.signInPassword);
+    // await getKeyFromPrefs(SharedPreferencesKeys.signupName);
+    // await getKeyFromPrefs(SharedPreferencesKeys.signupEmail);
+    // await getKeyFromPrefs(SharedPreferencesKeys.signInPassword);
+  }
+
+  void _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      await storeSignUpData();
+
+      // final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final savedNamed =
+          await getKeyFromPrefs(SharedPreferencesKeys.signupName);
+      final savedEmail =
+          await getKeyFromPrefs(SharedPreferencesKeys.signupEmail);
+      final savedPassword =
+          await getKeyFromPrefs(SharedPreferencesKeys.signupPassword);
+
+      if (savedEmail != null && savedPassword != null && savedNamed != null) {
+        Navigator.pushReplacementNamed(context, AppRoutes.otp);
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fix the errors in red')),
+      );
+    }
   }
 
   @override
@@ -54,45 +79,42 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Widget buildBody() {
-    return Column(
-      children: [
-        signupText(),
-        SizedBox(height: 10.h),
-        name(),
-        SizedBox(
-          height: 10.h,
-        ),
-        email(),
-        SizedBox(
-          height: 10.h,
-        ),
-        password(),
-        // SizedBox(
-        //   height: 5.h,
-        // ),
-        termCheck(),
-        SizedBox(
-          height: 10.h,
-        ),
-        //signup button
-        CustomButton(
-          btnText: "Sign Up",
-          onTap: () {
-            storeSignUpData();
-            Navigator.pushNamed(context, AppRoutes.otp);
-          },
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-        signInText(),
-        SizedBox(
-          height: 10.h,
-        ),
-        orCont(),
-        signupWith(),
-        socialButton()
-      ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          signupText(),
+          SizedBox(height: 10.h),
+          name(),
+          SizedBox(
+            height: 10.h,
+          ),
+          email(),
+          SizedBox(
+            height: 10.h,
+          ),
+          password(),
+          // SizedBox(
+          //   height: 5.h,
+          // ),
+          termCheck(),
+          SizedBox(
+            height: 10.h,
+          ),
+          //signup button
+          CustomButton(btnText: "Sign Up", onTap: _signUp),
+          SizedBox(
+            height: 20.h,
+          ),
+          signInText(),
+          SizedBox(
+            height: 10.h,
+          ),
+          orCont(),
+          signupWith(),
+          socialButton()
+        ],
+      ),
     );
   }
 
@@ -115,6 +137,7 @@ class _SignupScreenState extends State<SignupScreen> {
   //name textField
   Widget name() {
     return CustomTextField(
+        validator: validateFullName,
         hintText: "Full name",
         prefixIcon: Icon(CupertinoIcons.person_alt_circle,
             size: 24, color: Colors.black),
@@ -124,6 +147,7 @@ class _SignupScreenState extends State<SignupScreen> {
   //email textField
   Widget email() {
     return CustomTextField(
+      validator: validateEmail,
       hintText: 'Enter your email',
       prefixIcon: Icon(Icons.email_outlined),
       controller: emailController,
@@ -133,6 +157,7 @@ class _SignupScreenState extends State<SignupScreen> {
   //password textField
   Widget password() {
     return CustomTextField(
+      validator: validatePassword,
       hintText: "Enter your password",
       prefixIcon: Icon(Icons.lock_outline),
       controller: passwordController,

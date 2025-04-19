@@ -100,18 +100,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case AppRoutes.wiringInstallationAddress:
       return MaterialPageRoute(
           builder: (_) => WiringInstallationAddressScreen());
-    // case AppRoutes.wiringInstallationTime:
-    // return MaterialPageRoute(builder: (_)=>WiringInstallationTimeScreen());
-
-    // case AppRoutes.summary:
-
-    // case AppRoutes.electricService:
-    //   return MaterialPageRoute(builder: (_)=>ElectricServiceScreen(electricWidget: Electr))
-    // case AppRoutes.phoneNumScreen:
-    //   return MaterialPageRoute(builder: (_)=>PhoneNumScreen());
-    // case AppRoutes.providerOtpScreen:
-    //   return MaterialPageRoute(builder: (_)=>ProviderOtpScreen());
-// Default route
     default:
       return MaterialPageRoute(builder: (_) => Container());
   }

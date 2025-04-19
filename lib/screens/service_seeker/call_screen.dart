@@ -9,11 +9,8 @@ class CallScreen extends StatefulWidget {
   final String fromNumber;
   final String toNumber;
 
-  const CallScreen({
-    super.key,
-    required this.fromNumber,
-    required this.toNumber,
-  });
+  const CallScreen(
+      {super.key, required this.fromNumber, required this.toNumber});
 
   @override
   State<CallScreen> createState() => _CallScreenState();
@@ -25,8 +22,8 @@ class _CallScreenState extends State<CallScreen> {
 
   @override
   void initState() {
-    super.initState();
     _startTimer();
+    super.initState();
   }
 
   @override
@@ -43,32 +40,41 @@ class _CallScreenState extends State<CallScreen> {
     });
   }
 
-  bool isMuted = false;
   bool isSpeakerOn = false;
-  bool isVideoOn = false;
+  bool isMuted = false;
+  bool isVideOn = false;
 
   String _formatDuration(int seconds) {
-    final duration = Duration(seconds: seconds);
+    final hours = seconds ~/ 3600;
+    final minutes = (seconds % 3600) ~/ 60;
+    final secs = seconds % 60;
     String twoDigits(int n) => n.toString().padLeft(2, '0');
-    return "${twoDigits(duration.inMinutes)}:${twoDigits(duration.inSeconds % 60)} minutes";
+    if (hours > 0) {
+      return '${twoDigits(hours)}:${twoDigits(minutes)}:${twoDigits(secs)}';
+    } else {
+      return '${twoDigits(minutes)}:${twoDigits(secs)}';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          children: [
-            SizedBox(height: 100.h),
-            _callDetails(),
-            const Spacer(),
-            _callButtons(),
-            SizedBox(height: 50.h),
-          ],
+      body: buildBody(),
+    );
+  }
+
+  Widget buildBody() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 150.h,
         ),
-      ),
+        _callDetails(),
+        SizedBox(
+          height: 250.h,
+        ),
+        _callButtons(),
+      ],
     );
   }
 
@@ -85,93 +91,86 @@ class _CallScreenState extends State<CallScreen> {
             fit: BoxFit.contain,
           ),
         ),
-        SizedBox(height: 12.h),
-        Text(
-          "Calling...",
-          style: TextStyle(fontSize: 18.sp, color: Colors.grey),
+        SizedBox(
+          height: 10.h,
         ),
-        SizedBox(height: 4.h),
-        Text(
-          widget.toNumber,
-          style: TextStyle(fontSize: 14.sp),
-        ),
-        SizedBox(height: 6.h),
-        Text(
-          _formatDuration(_seconds),
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
-        ),
-      ],
-    );
-  }
-
-  Widget _callButtons() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _actionButton(Icons.mic_off, "Mute", isMuted, () {
-              setState(() {
-                isMuted = !isMuted;
-              });
-            }),
-            _actionButton(Icons.volume_up, "Speaker", isSpeakerOn, () {
-              setState(() {
-                isSpeakerOn = !isSpeakerOn;
-              });
-            }),
-            _actionButton(Icons.videocam, "Video", isVideoOn, () {
-              setState(() {
-                isVideoOn = !isVideoOn;
-              });
-            }),
-          ],
-        ),
-        SizedBox(height: 40.h),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, AppRoutes.dashboard);
-          },
-          child: CircleAvatar(
-            radius: 40.r,
-            backgroundColor: const Color.fromRGBO(220, 68, 55, 1),
-            child: Icon(
-              Icons.call_end,
-              size: 30.sp,
-              color: AppColors.whiteColor,
-            ),
-          ),
-        ),
-        SizedBox(height: 10.h),
-        Text(
-          "End Call",
-          style: TextStyle(fontSize: 14.sp, color: Colors.red),
-        ),
+        Text("Calling..."),
+        Text(widget.toNumber),
+        Text(_formatDuration(_seconds)),
       ],
     );
   }
 
   Widget _actionButton(
-      IconData icon, String label, bool isActive, VoidCallback onTap) {
+      VoidCallback onTap, String label, bool isActive, IconData icon) {
     return GestureDetector(
       onTap: onTap,
       child: Column(
         children: [
           CircleAvatar(
-            radius: 30.r,
-            backgroundColor: isActive
-                ? AppColors.lightBlueColor.withOpacity(0.2)
-                : const Color.fromRGBO(234, 239, 244, 1),
+            radius: 30,
+            backgroundColor: Color.fromRGBO(234, 239, 244, 1),
             child: Icon(
+              size: 30,
               icon,
-              size: 26.sp,
-              color: isActive ? AppColors.lightBlueColor : Colors.grey,
+              color:
+                  isActive ? AppColors.lightBlueColor : AppColors.darkGreyColor,
             ),
           ),
-          SizedBox(height: 6.h),
-          Text(label, style: TextStyle(fontSize: 12.sp)),
+          Text(label),
         ],
       ),
+    );
+  }
+
+  Widget _callButtons() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _actionButton(() {
+              setState(() {
+                isMuted = !isMuted;
+              });
+            }, "Mute", isMuted, Icons.mic),
+            SizedBox(
+              width: 20.h,
+            ),
+            _actionButton(() {
+              setState(() {
+                isSpeakerOn = !isSpeakerOn;
+              });
+            }, "Speaker", isSpeakerOn, Icons.volume_up_outlined),
+            SizedBox(
+              width: 20.h,
+            ),
+            _actionButton(() {
+              setState(() {
+                isVideOn = !isVideOn;
+              });
+            }, "Video", isVideOn, Icons.videocam),
+          ],
+        ),
+        SizedBox(
+          height: 30.h,
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.dashboard);
+          },
+          child: CircleAvatar(
+            radius: 40,
+            backgroundColor: Color.fromRGBO(220, 68, 55, 1),
+            child: Icon(
+              Icons.call_end,
+              size: 30,
+              color: AppColors.whiteColor,
+            ),
+          ),
+        )
+      ],
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:homeapp/core/theme/theme.dart';
 import 'package:homeapp/routes/route_generator.dart';
 import 'package:homeapp/screens/auth/forget_password/forget_password_screen.dart';
 
+import 'api_practice_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,10 +24,10 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           debugShowCheckedModeBanner: false,
           title: 'Fixit',
-          // initialRoute: "/splash",
+          initialRoute: "/splash",
 
-          home: ForgetPasswordScreen(),
-          // onGenerateRoute: generateRoute,
+          // home: ApiPracticeScreen(),
+          onGenerateRoute: generateRoute,
         );
       },
     );

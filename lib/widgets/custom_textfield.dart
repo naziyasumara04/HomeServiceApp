@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
   final bool obscureText;
+  
 
   const CustomTextField(
       {super.key,

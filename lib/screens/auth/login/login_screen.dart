@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:homeapp/data/local/shared_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/constants/app_images.dart';
+import '../../../core/helpers/validators.dart';
 import '../../../data/local/shared_prefs.dart';
 import '../../../routes/route_generator.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_social_button.dart';
+import '../../../widgets/custom_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,32 +17,40 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
   bool _obscureText = true;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //
-  // }
-
   Future<void> saveLoginData() async {
-
-
     // await prefs.setString(SharedPreferencesKeys.signInEmail, emailController.text);
     await setKeyFromPrefs(
         SharedPreferencesKeys.signInEmail, emailController.text);
     await setKeyFromPrefs(
         SharedPreferencesKeys.signInPassword, passwordController.text);
-    // await prefs.setString(SharedPreferencesKeys.signInPassword, passwordController.text);
-    // await prefs.setBool(SharedPreferencesKeys.keySignIn, true);
-    // final savedEmail=await getKeyFromPrefs(SharedPreferencesKeys.signInEmail);
-    // final savedPassword=await getKeyFromPrefs(SharedPreferencesKeys.signInPassword);
+  }
 
+  void _signIn() async {
+    if (_formKey.currentState!.validate()) {
+      // Save login data
+      await saveLoginData();
+      final prefs = await SharedPreferences.getInstance();
+      final savedEmail = prefs.getString(SharedPreferencesKeys.signInEmail);
+      final savedPassword =
+          prefs.getString(SharedPreferencesKeys.signInPassword);
 
+      if (savedEmail != null && savedPassword != null) {
+        Navigator.pushReplacementNamed(context, AppRoutes.otp);
+      } else {
+        Navigator.pushNamed(context, AppRoutes.signIn);
+      }
+
+    } else {
+      // Optional: show error SnackBar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fix the errors in red')),
+      );
+    }
   }
 
   @override
@@ -55,84 +65,59 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              "Enter your email and password to login",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-            ),
-            const SizedBox(height: 20),
-            buildEmailField(),
-            const SizedBox(height: 15),
-            buildPasswordField(),
-            buildForgotPasswordText(),
-            const SizedBox(height: 20),
-            CustomButton(
-              btnText: "Sign In",
-              onTap: () async {
-                if (emailController.text.isNotEmpty &&
-                    passwordController.text.isNotEmpty) {
-                  // Save data
-                  await saveLoginData();
-
-                  // Optionally validate saved data
-                  final prefs = await SharedPreferences.getInstance();
-                  final savedEmail = prefs.getString(SharedPreferencesKeys.signInEmail);
-                  final savedPassword = prefs.getString(SharedPreferencesKeys.signInPassword);
-
-                  if (savedEmail != null && savedPassword != null) {
-                    Navigator.pushNamed(context, AppRoutes.accountSetup);
-                  } else {
-                    Navigator.pushNamed(context, AppRoutes.otp);
-                  }
-                } else {
-                  Navigator.pushNamed(context, AppRoutes.otp);
-                }
-              },
-
-            ),
-            const SizedBox(height: 15),
-            buildSignupText(),
-            buildOrDivider(),
-            socialButton(),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                "Enter your email and password to login",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 20),
+              _buildEmailField(),
+              const SizedBox(height: 15),
+              _buildPasswordField(),
+              buildForgotPasswordText(),
+              const SizedBox(height: 20),
+              _signInButton(),
+              const SizedBox(height: 15),
+              buildSignupText(),
+              buildOrDivider(),
+              socialButton(),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget buildEmailField() {
-    return TextField(
+  Widget _buildEmailField() {
+    return CustomTextField(
+      validator: validateEmail,
       controller: emailController,
-      decoration: const InputDecoration(
-        labelText: "Enter your email",
-        prefixIcon: Icon(Icons.email_outlined),
-        border: OutlineInputBorder(),
-      ),
+      hintText: "Enter your email",
+      prefixIcon: Icon(Icons.email_outlined),
     );
   }
 
-  Widget buildPasswordField() {
-    return TextField(
-      controller: passwordController,
-      obscureText: _obscureText,
-      decoration: InputDecoration(
-        labelText: "Enter your password",
-        prefixIcon: const Icon(Icons.lock_outline),
-        border: const OutlineInputBorder(),
+  Widget _buildPasswordField() {
+    return CustomTextField(
+        validator: validatePassword,
+        controller: passwordController,
+        obscureText: _obscureText,
         suffixIcon: IconButton(
-          icon: Icon(
-            _obscureText ? Icons.visibility_off : Icons.visibility,
-          ),
           onPressed: () {
             setState(() {
               _obscureText = !_obscureText;
             });
           },
+          icon: Icon(
+            _obscureText ? Icons.visibility_off : Icons.visibility,
+          ),
         ),
-      ),
-    );
+        hintText: "Enter your password",
+        prefixIcon: const Icon(Icons.lock_outline));
   }
 
   Widget buildForgotPasswordText() {
@@ -150,11 +135,15 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _signInButton() {
+    return CustomButton(btnText: "Sign In", onTap: _signIn);
+  }
+
   Widget buildSignupText() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("New to FixIt? "),
+        const Text("New to FixIt?"),
         TextButton(
           onPressed: () {
             Navigator.pushNamed(context, '/signup');
