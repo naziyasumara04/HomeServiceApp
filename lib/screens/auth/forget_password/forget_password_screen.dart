@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homeapp/routes/route_generator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
+import '../../../core/helpers/validators.dart';
 import '../../../data/local/shared_keys.dart';
 import '../../../data/local/shared_prefs.dart';
 import '../../../widgets/custom_button.dart';
@@ -16,8 +18,6 @@ class ForgetPasswordScreen extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-
-
   final TextEditingController oldpasswordController = TextEditingController();
   final TextEditingController newpasswordController = TextEditingController();
   final TextEditingController confirmpasswordController =
@@ -25,8 +25,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   bool _obscureoldText = true;
   bool _obscurenewText = true;
   bool _obscureconfirmText = true;
-
-
+  var _formKey = GlobalKey<FormState>();
 
   void resetDataStore() async {
     await setKeyFromPrefs(
@@ -37,21 +36,33 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         confirmpasswordController.text);
 
     // String oldPassword =
-        await getKeyFromPrefs(SharedPreferencesKeys.resetOldPassword);
+    await getKeyFromPrefs(SharedPreferencesKeys.resetOldPassword);
 
     // String newPassword =
-        await getKeyFromPrefs(SharedPreferencesKeys.resetNewPassword);
+    await getKeyFromPrefs(SharedPreferencesKeys.resetNewPassword);
 
     // String confirmPassword =
-        await getKeyFromPrefs(SharedPreferencesKeys.resetConfirmPassword);
+    await getKeyFromPrefs(SharedPreferencesKeys.resetConfirmPassword);
+  }
 
-    // print("Old: ${oldPassword}");
-    // print("New: ${newPassword}");
-    // print("Confirm: ${confirmPassword}");
-    // print("from controller");
-    // print("Old: ${oldpasswordController.text}");
-    // print("New: ${newpasswordController.text}");
-    // print("Confirm: ${confirmpasswordController.text}");
+  //continue from this
+  void updatePassword() async {
+    if (_formKey.currentState!.validate()) {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final savedNewPassword =
+          prefs.get(SharedPreferencesKeys.resetNewPassword);
+      final savedConfirmPassword =
+          prefs.get(SharedPreferencesKeys.resetConfirmPassword);
+
+      if (savedNewPassword != null && savedConfirmPassword != null) {
+        Navigator.pushNamed(context, AppRoutes.otp);
+      } else {
+        Navigator.pushNamed(context, AppRoutes.forgetPassword);
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("please fix the error in red")));
+    }
   }
 
   @override
@@ -69,29 +80,32 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   }
 
   Widget buildBody() {
-    return Column(
-      children: [
-        SizedBox(
-          height: 40.h,
-        ),
-        resetPassword(),
-        SizedBox(
-          height: 30.h,
-        ),
-        oldPassword(),
-        SizedBox(
-          height: 20.h,
-        ),
-        newPassword(),
-        SizedBox(
-          height: 20.h,
-        ),
-        confirmPassword(),
-        SizedBox(
-          height: 30.h,
-        ),
-        updateBtn()
-      ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 40.h,
+          ),
+          resetPassword(),
+          SizedBox(
+            height: 30.h,
+          ),
+          oldPassword(),
+          SizedBox(
+            height: 20.h,
+          ),
+          newPassword(),
+          SizedBox(
+            height: 20.h,
+          ),
+          confirmPassword(),
+          SizedBox(
+            height: 30.h,
+          ),
+          updateBtn()
+        ],
+      ),
     );
   }
 
@@ -117,6 +131,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: CustomTextField(
+        // validator: ,
         hintText: "Enter your old password",
         prefixIcon: Icon(Icons.lock_outline),
         controller: oldpasswordController,
@@ -141,6 +156,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: CustomTextField(
+        validator: validatePassword,
         hintText: "Enter new password",
         prefixIcon: Icon(Icons.lock_outline),
         controller: newpasswordController,
@@ -165,6 +181,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: CustomTextField(
+        validator: validatePassword,
         hintText: "Enter confirm password",
         prefixIcon: Icon(Icons.lock_outline),
         controller: confirmpasswordController,
@@ -190,11 +207,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       btnText: "Update password",
       onTap: () {
         resetDataStore();
-        Navigator.pushNamed(context, AppRoutes.otp);
+        updatePassword();
+        // Navigator.pushNamed(context, AppRoutes.otp);
       },
     );
   }
-
-
-
 }

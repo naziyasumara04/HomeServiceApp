@@ -1,5 +1,3 @@
-
-
 class AppImages {
   static const appLogo = "assets/images/applogo.png";
   static const men = "assets/images/man.png";
@@ -107,6 +105,11 @@ class AppImages {
   static const galleryImgSeven = "assets/images/galleryImgSeven.png";
   static const galleryImgEight = "assets/images/galleryImgEight.png";
 
-
+  static const mapImgOne = "assets/images/map_image_one.png";
+  static const mapImgTwo = "assets/images/map_image_two.png";
+  static const mapImgThree = "assets/images/map_image_three.png";
+  static const mapImgFour = "assets/images/map_image_four.png";
+  static const mapImgFive = "assets/images/map_image_five.png";
+  static const mapImgSix = "assets/images/map_image_six.png";
 
 }

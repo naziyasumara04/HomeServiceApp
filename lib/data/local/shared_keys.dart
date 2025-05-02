@@ -1,6 +1,4 @@
 class SharedPreferencesKeys {
-
-
   static const String signInEmail = 'signin_email';
   static const String signInPassword = 'signin_password';
 

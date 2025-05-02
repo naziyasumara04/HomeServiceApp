@@ -63,7 +63,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case AppRoutes.otp:
       return MaterialPageRoute(builder: (_) => OtpScreen());
     case AppRoutes.forgetPassword:
-      return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());
+      return MaterialPageRoute(builder: (context) => ForgetPasswordScreen());
     case AppRoutes.otpSuccess:
       return MaterialPageRoute(builder: (_) => OtpSuccessScreen());
     case AppRoutes.dashboard:

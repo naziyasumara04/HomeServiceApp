@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homeapp/data/local/shared_keys.dart';
+import 'package:homeapp/screens/auth/forget_password/forget_password_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/constants/app_images.dart';
 import '../../../core/helpers/validators.dart';
@@ -44,7 +45,6 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         Navigator.pushNamed(context, AppRoutes.signIn);
       }
-
     } else {
       // Optional: show error SnackBar
       ScaffoldMessenger.of(context).showSnackBar(
@@ -125,7 +125,9 @@ class _LoginScreenState extends State<LoginScreen> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/forgotPassword');
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => ForgetPasswordScreen()));
+          Navigator.pushNamed(context, '/forgetPassword');
         },
         child: const Text(
           "Forgot Password?",
